@@ -1,1 +1,1 @@
-# pythonProgramming-AMI-23
+# Repository for Python labs
