@@ -1,18 +1,5 @@
-# def sum(K, N):
-#     sum = 0
-#     for i in range(1, K+1):
-#         print(i)
-#         sum += bunny(K, N-i)
-#     return sum
-
-# def calcWays(K, N):
-#     if N < 0:
-#         return 0
-#     if N == 0:
-#         return 1
-#     else: 
-#         return sum(K, N)
-
+# Calculate the number of ways in which a bunny with a maximal step of K 
+# can get on Nth stair
 
 def calcWays(K, N):        
     temp = 0
