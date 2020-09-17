@@ -1,5 +1,25 @@
 # Generate the sequence of Mersenne primes 
 
+def inputAndValidate(): 
+  validationFlag = False
+  while not validationFlag:
+    try:
+      n = int(input('Enter N value: '))
+      print('-' * 58)
+      validationFlag = True
+
+      if n <= 0:
+        print('N must be greater than zero')
+        print('-' * 58)
+        validationFlag = False
+
+    except ValueError:
+      print('-' * 58)
+      print('N must be an integer value')
+      print('-' * 58)
+
+  return n
+    
 def isMersennePrime(mersenne, _pow):
   "Lucas–Lehmer primality test for Mersenne numbers"
 
@@ -25,10 +45,9 @@ def MersennePrimesTillN (n):
     mersenne = 2**_pow - 1
 
 
-print('''----------------------------------------------------------
-This programm generates a sequence of Mersenne primes up to N
-----------------------------------------------------------''')
-n = int(input('Enter N value: '))
-assert n > 0
+print('-' * 58)
+print('This programm generates a sequence of Mersenne primes up to N')
+print('-' * 58)
 
+n = inputAndValidate()
 MersennePrimesTillN(n)
