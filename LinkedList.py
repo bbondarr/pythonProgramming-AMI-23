@@ -32,16 +32,20 @@ class LinkedList:
             self.__checkIndex(begin)
 
             subList = LinkedList()
-            for i in range(begin, end, step):
-                subList.append(self[i])
+            currentNode, i = self.__head, 0    
+            while currentNode is not None:
+                if (i in range(begin, end, step)): 
+                    subList.append(currentNode.data)
+                currentNode = currentNode.next
+                i += 1
             return subList
 
         self.__checkIndex(key)
-        currentNode, currentKey = self.__head, 0
+        currentNode, i = self.__head, 0
         while currentNode is not None:
-            if (currentKey == key): return currentNode.data
+            if (i == key): return currentNode.data
             currentNode = currentNode.next
-            currentKey += 1
+            i += 1
 
     # setitem + setslice implementation
     def __setitem__(self, key, value):
@@ -51,21 +55,30 @@ class LinkedList:
             self.__checkIndex(begin)
 
             if (isinstance(value, (LinkedList, list))):
-                j = 0
-                for i in range(begin, end, step):
-                    self[i] = value[j]
-                    j += 1
+                i = j = 0
+                currentNode = self.__head  
+                while currentNode is not None:
+                    if (i in range(begin, end, step)): 
+                        currentNode.data = value[j]
+                        j += 1
+                    currentNode = currentNode.next
+                    i += 1
             else: 
-                for i in range(begin, end, step): 
-                    self[i] = value
+                currentNode, i = self.__head, 0    
+                while currentNode is not None:
+                    if (i in range(begin, end, step)): 
+                        currentNode.data = value
+                    currentNode = currentNode.next
+                    i += 1
+                
             return   
 
         self.__checkIndex(key)
-        currentNode, currentKey = self.__head, 0
+        currentNode, i = self.__head, 0
         while currentNode is not None:
-            if (currentKey == key): currentNode.data = value
+            if (i == key): currentNode.data = value
             currentNode = currentNode.next
-            currentKey += 1
+            i += 1
     
     # Private method to check whether the key is out of List range
     def __checkIndex(self, key):
@@ -93,10 +106,10 @@ class LinkedList:
 
         self.__checkIndex(key)
 
-        currentNode, currentInd = self.__head, 0
+        currentNode, i = self.__head, 0
         prevNode = None
         while currentNode is not None:
-            if (currentInd == key): 
+            if (i == key): 
                 newNode = Node(data) 
                 prevNode.next = newNode
                 newNode.next = currentNode
@@ -104,9 +117,9 @@ class LinkedList:
                 return
             prevNode = currentNode
             currentNode = currentNode.next
-            currentInd += 1
+            i += 1
 
-    def pop(self, key = None):
+    def pop(self, key = 0):
         if (key == 0):
             temp = self.__head
             self.__head = self.__head.next
@@ -114,20 +127,19 @@ class LinkedList:
             self.__length -= 1
             return
 
-        if (key is None): key = len(self)-1
         self.__checkIndex(key)
 
-        currentNode, currentInd = self.__head, 0
+        currentNode, i = self.__head, 0
         prevNode = None
         while currentNode is not None:
-            if (currentInd == key): 
+            if (i == key): 
                 prevNode.next = currentNode.next
                 currentNode.next = None
                 self.__length -= 1
                 return
             prevNode = currentNode
             currentNode = currentNode.next
-            currentInd += 1
+            i += 1
 
     def reverse(self):
         currentNode = self.__head
@@ -152,4 +164,4 @@ class LinkedList:
 
     def clear(self): 
         for i in range(self.__length):
-            self.pop(0)
+            self.pop()
