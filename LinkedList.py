@@ -1,6 +1,6 @@
 # Node Class implenetation
 class Node:
-    def __init__(self, data=None):
+    def __init__(self, data):
         self.data = data
         self.next = None
 
@@ -8,17 +8,17 @@ class Node:
 # Linked List implementation
 class LinkedList:
     def __init__(self, lst=None):
-        self.head = None
-        self.length = 0
+        self.__head = None
+        self.__length = 0
         if (lst is not None):
             for elem in lst: self.append(elem)
 
     def __len__(self):
-        return self.length
+        return self.__length
 
     def __str__(self):
         listStr = '[ '
-        currentNode = self.head
+        currentNode = self.__head
         while currentNode is not None:
             listStr += str(currentNode.data)+' '
             currentNode = currentNode.next
@@ -37,7 +37,7 @@ class LinkedList:
             return subList
 
         self.__checkIndex(key)
-        currentNode, currentKey = self.head, 0
+        currentNode, currentKey = self.__head, 0
         while currentNode is not None:
             if (currentKey == key): return currentNode.data
             currentNode = currentNode.next
@@ -61,7 +61,7 @@ class LinkedList:
             return   
 
         self.__checkIndex(key)
-        currentNode, currentKey = self.head, 0
+        currentNode, currentKey = self.__head, 0
         while currentNode is not None:
             if (currentKey == key): currentNode.data = value
             currentNode = currentNode.next
@@ -69,61 +69,87 @@ class LinkedList:
     
     # Private method to check whether the key is out of List range
     def __checkIndex(self, key):
-        if (key >= self.length): 
+        if (key >= self.__length): 
             raise IndexError('LinkedList index out of range')
 
     def append(self, data):
-        if (self.head is None):
-            self.head = Node(data)
+        if (self.__head is None):
+            self.__head = Node(data)
         else:
-            currentNode = self.head
+            currentNode = self.__head
             while currentNode.next is not None:
                 currentNode = currentNode.next
             currentNode.next = Node(data)
-        self.length += 1
+        self.__length += 1
+
+    def insert(self, key, data):
+        if (key == 0):
+            newNode = Node(data)
+            temp = self.__head
+            self.__head = newNode
+            newNode.next = temp
+            self.__length += 1
+            return
+
+        self.__checkIndex(key)
+
+        currentNode, currentInd = self.__head, 0
+        prevNode = None
+        while currentNode is not None:
+            if (currentInd == key): 
+                newNode = Node(data) 
+                prevNode.next = newNode
+                newNode.next = currentNode
+                self.__length += 1
+                return
+            prevNode = currentNode
+            currentNode = currentNode.next
+            currentInd += 1
 
     def pop(self, key = None):
         if (key == 0):
-            temp = self.head
-            self.head = self.head.next
+            temp = self.__head
+            self.__head = self.__head.next
             temp.next = None
+            self.__length -= 1
             return
 
         if (key is None): key = len(self)-1
         self.__checkIndex(key)
 
-        currentNode, currentInd = self.head, 0
+        currentNode, currentInd = self.__head, 0
         prevNode = None
-        while currentNode is not Node():
+        while currentNode is not None:
             if (currentInd == key): 
                 prevNode.next = currentNode.next
                 currentNode.next = None
-                self.length -= 1
+                self.__length -= 1
                 return
             prevNode = currentNode
             currentNode = currentNode.next
             currentInd += 1
 
     def reverse(self):
-        currentNode = self.head
+        currentNode = self.__head
         temp = []
         while currentNode is not None:
             temp.append(currentNode.data)
             currentNode = currentNode.next
 
-        currentNode = self.head
+        currentNode = self.__head
         for elem in reversed(temp):
             currentNode.data = elem
             currentNode = currentNode.next
 
     def copy(self):
         copy = LinkedList()
-        currentNode = self.head
+        currentNode = self.__head
         while currentNode is not None:
             copy.append(currentNode.data)
             currentNode = currentNode.next
 
         return copy
 
-    def print(self):
-        print(str(self))
+    def clear(self): 
+        for i in range(self.__length):
+            self.pop(0)
