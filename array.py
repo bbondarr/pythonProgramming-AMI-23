@@ -20,8 +20,7 @@ def alternationsReverse(lst):
             if (isAlternation(lst[i:i+k]) 
                 and not i in reservedIndexes): 
 
-                print('ALTERNATION SUBLIST - ', end='')
-                lst[i:i+k].print()
+                print('ALTERNATION SUBLIST - ', lst[i:i+k])
 
                 reservedIndexes += list(range(i, i+k))
                 temp = lst[i:i+k]; temp.reverse()
@@ -70,11 +69,9 @@ def generateRandom():
         lst = LinkedList(lst)
 
         # Programming task
-        print('Your list: ', end='')
-        lst.print()
+        print('Your list: ', lst)
         lst = alternationsReverse(lst)
-        print('\nREVERSED LIST - ', end='')
-        lst.print()
+        print('\nREVERSED LIST - ', lst)
         break
 
 def generateFromInput():
@@ -93,11 +90,9 @@ def generateFromInput():
         lst = LinkedList(lst)
 
         # Programming task
-        print('Your list: ', end='')
-        lst.print()
+        print('Your list: ', lst)
         lst = alternationsReverse(lst)
-        print('\nREVERSED LIST - ', end='')
-        lst.print()
+        print('\nREVERSED LIST - ', lst)
         break
 
 
