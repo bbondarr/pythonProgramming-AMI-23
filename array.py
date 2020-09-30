@@ -11,7 +11,7 @@ def isAlternation(lst):
 def alternationsReverse(lst):
     res = lst.copy()
     reservedIndexes = []
-    k = len(lst) - 1; i = 0
+    k = len(lst); i = 0
 
     while k > 1:
         while i+k <= len(lst):
@@ -45,42 +45,63 @@ def menu():
         else: print('-' * 50, '\nEnter \'1\' or \'2\' or \'3\'')
 
 def generateRandom():
-    while True: 
-        try: 
-            # Input
-            size = int(input('Enter list size: '))
-            if (size <= 0): 
-                print('Size must be greater than zero')
-                continue
-            maxValue = int(input('Enter maximal value of an element: '))
-            minValue = int(input('Enter minimal value of an element: '))
-            
-            # List generation
-            lst = [random.randint(minValue, maxValue) 
-            for i in range(0, size)]
+     while True: 
+        # Input
+        size = input('Enter list size: ')
+        maxValue = input('Enter maximal value of an element: ')
+        minValue = input('Enter minimal value of an element: ')
 
-            # Programming task
-            print('Your list:', lst, '\n')
-            print('\nREVERSED LIST -', alternationsReverse(lst))
-            break
-        except ValueError:
-            print('All input data must have an integer value\n')
+        # Validation
+        size = validateN(size, 'Size')
+        maxValue = validateZ(maxValue, 'Max value')
+        minValue = validateZ(minValue, 'Min value')
+        if (size is False or maxValue is False or minValue is False):
             continue
+        if (minValue > maxValue): 
+            print('Max value must be greater than Min') 
+            continue
+            
+        # List generation
+        lst = [random.randint(minValue, maxValue) 
+        for i in range(0, size)]
+
+        # Programming task
+        print('Your list: ', lst)
+        lst = alternationsReverse(lst)
+        print('\nREVERSED LIST - ', lst)
+        break
 
 def generateFromInput():
     while True:
-        try: 
-            # Input
-            lst = [int(item) 
-            for item in input("Enter the list items: ").split()] 
+        # Input
+        lst = [item for item in input("Enter the list items: ").split()]
 
-            # Programming task
-            print('Your list:', lst, '\n')
-            lst = alternationsReverse(lst)
-            print('\nREVERSED LIST -', lst)
-            break
-        except ValueError:
-            print('All input data must have an integer value\n')
-            continue
+        # Validation
+        flag = True
+        for i in range(len(lst)): 
+            lst[i] = validateZ(lst[i], 'List elements')
+            if lst[i] is False: flag = False; break            
+        if not flag: continue
+
+        # Programming task
+        print('Your list: ', lst)
+        lst = alternationsReverse(lst)
+        print('\nREVERSED LIST - ', lst)
+        break
+
+def validateZ(val, str):
+    try:
+        val = int(val)
+    except ValueError: 
+        print(str+' must have an integer value')
+        val = False
+    return val 
+
+def validateN(val, str):
+    val = validateZ(val, str)
+    if not val > 0: 
+        print(str+' must be greater than zero')
+        val = False
+    return val
 
 menu()
