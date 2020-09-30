@@ -1,5 +1,7 @@
 import random
+from LinkedList import *
 
+# Algorithm implementation
 def isAlternation(lst):
     """Checks whether the list is a sequence of alternations f.e. [-3, 2, -1, 10] - True"""
     for i in range(1, len(lst)):
@@ -18,7 +20,9 @@ def alternationsReverse(lst):
             if (isAlternation(lst[i:i+k]) 
                 and not i in reservedIndexes): 
 
-                print('ALTERNATION SUBLIST -', lst[i:i+k])
+                print('ALTERNATION SUBLIST - ', end='')
+                lst[i:i+k].print()
+
                 reservedIndexes += list(range(i, i+k))
                 temp = lst[i:i+k]; temp.reverse()
                 res[i:i+k] = temp                   
@@ -28,6 +32,8 @@ def alternationsReverse(lst):
     
     return res    
 
+
+# Menu implementation
 def menu():
     while True:
         print('-' * 50)
@@ -45,7 +51,7 @@ def menu():
         else: print('-' * 50, '\nEnter \'1\' or \'2\' or \'3\'')
 
 def generateRandom():
-     while True: 
+    while True: 
         # Input
         size = input('Enter list size: ')
         maxValue = input('Enter maximal value of an element: ')
@@ -57,18 +63,18 @@ def generateRandom():
         minValue = validateZ(minValue, 'Min value')
         if (size is False or maxValue is False or minValue is False):
             continue
-        if (minValue > maxValue): 
-            print('Max value must be greater than Min') 
-            continue
             
         # List generation
         lst = [random.randint(minValue, maxValue) 
         for i in range(0, size)]
+        lst = LinkedList(lst)
 
         # Programming task
-        print('Your list: ', lst)
+        print('Your list: ', end='')
+        lst.print()
         lst = alternationsReverse(lst)
-        print('\nREVERSED LIST - ', lst)
+        print('\nREVERSED LIST - ', end='')
+        lst.print()
         break
 
 def generateFromInput():
@@ -80,15 +86,22 @@ def generateFromInput():
         flag = True
         for i in range(len(lst)): 
             lst[i] = validateZ(lst[i], 'List elements')
-            if lst[i] is False: flag = False; break            
+            if lst[i] is False: flag = False; break
+
         if not flag: continue
 
+        lst = LinkedList(lst)
+
         # Programming task
-        print('Your list: ', lst)
+        print('Your list: ', end='')
+        lst.print()
         lst = alternationsReverse(lst)
-        print('\nREVERSED LIST - ', lst)
+        print('\nREVERSED LIST - ', end='')
+        lst.print()
         break
 
+
+# Validation
 def validateZ(val, str):
     try:
         val = int(val)
@@ -103,5 +116,6 @@ def validateN(val, str):
         print(str+' must be greater than zero')
         val = False
     return val
+
 
 menu()
