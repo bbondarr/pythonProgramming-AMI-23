@@ -11,7 +11,7 @@ def isAlternation(lst):
 def alternationsReverse(lst):
     res = lst.copy()
     reservedIndexes = []
-    k = len(lst) - 1; i = 0
+    k = len(lst); i = 0
 
     while k > 1:
         while i+k <= len(lst):
@@ -45,72 +45,100 @@ def menu():
         else: print('-' * 50, '\nEnter \'1\' or \'2\' or \'3\'')
 
 def generateRandom():
-    while True: 
-        try: 
-            # Input
-            size = int(input('Enter list size: '))
-            if (size <= 0): 
-                print('Size must be greater than zero')
-                continue
-            maxValue = int(input('Enter maximal value of an element: '))
-            minValue = int(input('Enter minimal value of an element: '))
-            
-            # List generation
-            lst = [random.randint(minValue, maxValue) 
-            for i in range(0, size)]
+     while True: 
+        # Input
+        size = input('Enter list size: ')
+        maxValue = input('Enter maximal value of an element: ')
+        minValue = input('Enter minimal value of an element: ')
 
-            # Programming task
-            print('Your list:', lst, '\n')
-            print('\nREVERSED LIST -', alternationsReverse(lst))
-
-            # Edu practice task
-            k = input('\nFind all the entries of K value\nEnter K value or type \'q\' to quit: ')
-            if (k == 'q'): break
-            k = int(k)
-
-            indexLst = [i for i in range(0, len(lst))]
-            sort(lst, indexLst)
-
-            sortedIndexes = find(lst, k)
-            print('\n%d is on position' % (k), end=' ')
-            for i in sortedIndexes:
-                print(indexLst[i], end=' ')
-            print('\n')
-            break
-        except ValueError:
-            print('All input data must have an integer value\n')
+        # Validation
+        size = validateN(size, 'Size')
+        maxValue = validateZ(maxValue, 'Max value')
+        minValue = validateZ(minValue, 'Min value')
+        if (size is False or maxValue is False or minValue is False):
             continue
+        if (minValue > maxValue): 
+            print('Max value must be greater than Min') 
+            continue
+            
+        # List generation
+        lst = [random.randint(minValue, maxValue) 
+        for i in range(0, size)]
+
+        # Programming task
+        print('Your list: ', lst)
+        lst = alternationsReverse(lst)
+        print('\nREVERSED LIST - ', lst)
+
+        # Edu practice task
+        # Input
+        k = input('\nFind all the entries of K value\nEnter K value or type \'q\' to quit: ')
+        if (k == 'q'): break
+
+        # Validation
+        k = validateZ(k, 'k')
+        if k is False: continue
+
+        indexLst = [i for i in range(0, len(lst))]
+        sort(lst, indexLst)
+
+        sortedIndexes = find(lst, k)
+        print('\n%d is on position' % (k), end=' ')
+        for i in sortedIndexes:
+            print(indexLst[i], end=' ')
+        print('\n')
+        break
 
 def generateFromInput():
     while True:
-        try: 
-            # Input
-            lst = [int(item) 
-            for item in input("Enter the list items: ").split()] 
+        # Input
+        lst = [item for item in input("Enter the list items: ").split()]
 
-            # Programming task
-            print('Your list:', lst, '\n')
-            lst = alternationsReverse(lst)
-            print('\nREVERSED LIST -', lst)
+        # Validation
+        flag = True
+        for i in range(len(lst)): 
+            lst[i] = validateZ(lst[i], 'List elements')
+            if lst[i] is False: flag = False; break            
+        if not flag: continue
 
-            # Edu practice task
-            k = input('\nFind all the entries of K value\nEnter K value or type \'q\' to quit: ')
-            if (k == 'q'): break
-            k = int(k)
+        # Programming task
+        print('Your list: ', lst)
+        lst = alternationsReverse(lst)
+        print('\nREVERSED LIST - ', lst)
 
-            indexLst = [i for i in range(0, len(lst))]
-            sort(lst, indexLst)
-            print('Sorted list:', lst)
+        # Edu practice task
+        # Input
+        k = input('\nFind all the entries of K value\nEnter K value or type \'q\' to quit: ')
+        if (k == 'q'): break
 
-            sortedIndexes = find(lst, k)
-            print('\n%d is on position' % (k), end=' ')
-            for i in sortedIndexes:
-                print(indexLst[i], end=' ')
-            print('\n')
-            break
-        except ValueError:
-            print('All input data must have an integer value\n')
-            continue
+        # Validation
+        k = validateZ(k, 'k')
+        if k is False: continue
+
+        indexLst = [i for i in range(0, len(lst))]
+        sort(lst, indexLst)
+
+        sortedIndexes = find(lst, k)
+        print('\n%d is on position' % (k), end=' ')
+        for i in sortedIndexes:
+            print(indexLst[i], end=' ')
+        print('\n')
+        break
+
+def validateZ(val, str):
+    try:
+        val = int(val)
+    except ValueError: 
+        print(str+' must have an integer value')
+        val = False
+    return val 
+
+def validateN(val, str):
+    val = validateZ(val, str)
+    if not val > 0: 
+        print(str+' must be greater than zero')
+        val = False
+    return val
 
 def sort(lst, indLst):
     """Sorting two lists in terms of the first one"""
@@ -121,15 +149,17 @@ def sort(lst, indLst):
                 indLst[j], indLst[j + 1] = indLst[j + 1], indLst[j]
 
 def find(lst, k):
-    first = findFirst(lst, k)
-    last = findLast(lst, k)
+    first = binarySearch(lst, k, 'first')
+    last = binarySearch(lst, k, 'last')
     print('\nAll %ds were found for %d operations' % (k, first[0]+last[0]))
 
     return list(range(first[1], last[1]+1))
       
-def findFirst(lst, k):
-    """Binary search algorithm for first K entry in the list"""
-    first = -1
+def binarySearch(lst, k, flag='first'):
+    if (flag != 'first' and flag != 'last'):
+        return -1
+
+    res = -1
     low, top = 0, len(lst) - 1
     print('\nLooking for a first entry of %d' % (k))
     counter = 1
@@ -142,39 +172,17 @@ def findFirst(lst, k):
         print('\tChecking if element is on pos %d...' % (mid))
 
         if (lst[mid] == k):
-            first = mid
-            top = mid - 1
+            res = mid
             print('Found %d on pos %d!' % (k, mid))
+
+            if flag == 'first': top = mid - 1
+            if flag == 'last' : low = mid + 1
         elif lst[mid] < k: 
             low = mid + 1
         else: 
             top = mid - 1 
 
-    return [counter, first]
+    return [counter, res]
 
-def findLast(lst, k):
-    """Binary search algorithm for last K entry in the list"""
-    last = -1
-    low, top = 0, len(lst) - 1
-    print('\nLooking for a last entry of %d' % (k))
-    counter = 1
-
-    while low <= top: 
-        mid = low + (top - low) // 2
-
-        print('%d. Checking if element is between pos %d and %d...' % (counter, low, top))
-        counter+=1
-        print('\tChecking if element is on pos %d...' % (mid))
-
-        if (lst[mid] == k):
-            last = mid
-            low = mid + 1
-            print('Found %d on pos %d!' % (k, mid))
-        elif lst[mid] < k: 
-            low = mid + 1
-        else: 
-            top = mid - 1
-
-    return [counter, last]
 
 menu()
