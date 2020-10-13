@@ -1,8 +1,7 @@
 import json
 from datetime import date
 from Product import *
-from Validation import Validation
-v = Validation()
+from Validation import Validation as v
 
 class ProductContainer:
     def __init__(self):
@@ -20,16 +19,9 @@ class ProductContainer:
         res = ProductContainer()
         key = str(key)
         for p in self.__productList:
-            if key == p.getID(): res.add(p)
-
-            if key == str(p.getPrice()): res.add(p)
-
-            if p.getTitle().find(key) != -1: res.add(p)
-            if p.getDescription().find(key) != -1: res.add(p)
-            if p.getImageURL().find(key) != -1: res.add(p)
-
-            if str(p.getCreatedAt()).find(key) != -1: res.add(p)
-            if str(p.getUpdatedAt()).find(key) != -1: res.add(p)
+            for a in p.getGetters():
+                if str(getattr(p, a)()).find(key) != -1:
+                    res.add(p)
 
         return res if len(res) != 1 else res._ProductContainer__productList[0]
 
@@ -72,6 +64,9 @@ class ProductContainer:
         for p in self.__productList:
             if p.getID() == ID: 
                 getattr(p, _attr)(val)
+                break
+        else: 
+            raise NameError('No product with such ID found')
 
         self.writeIntoFile('products.json')
 

@@ -5,23 +5,26 @@ class Validation:
     def __init__(self): 
         pass
 
-    def validateFloat(self, val, _str):
+    @staticmethod
+    def validateFloat(val, _str):
         try:
-            val = float(val)
+            val = round(float(val), 2)
         except ValueError: 
             raise ValueError(_str+' must have a float value')
         
         return val        
 
-    def validateFloatInRange(self, val, _str):
-        val = self.validateFloat(val, _str)
+    @staticmethod
+    def validateFloatInRange(val, _str):
+        val = Validation.validateFloat(val, _str)
         MIN_VAL, MAX_VAL = 0, 5000
         if not (MIN_VAL < val and val <= MAX_VAL): 
             raise ValueError(_str+' must be less than %d' %(MAX_VAL))
 
         return val
 
-    def validateStr(self, val, _str):
+    @staticmethod
+    def validateStr(val, _str):
         if not isinstance(val, str):
             raise ValueError(_str+' must have a string value')
         # if re.search(r'[^A-Za-z ]+', val) is not None: 
@@ -29,15 +32,17 @@ class Validation:
         
         return val     
 
-    def validateURL(self, val, _str):
-        val = self.validateStr(val, _str)
+    @staticmethod
+    def validateURL(val, _str):
+        val = Validation.validateStr(val, _str)
         regexSrch = re.search(r'[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)', val)
         if regexSrch is None: 
             raise ValueError('Bad URL for '+_str)
         
         return val 
 
-    def validateDate(self, val, _str):
+    @staticmethod
+    def validateDate(val, _str):
         if isinstance(val, str):
             [yyyy, mm, dd] = val.split('-')
             val = date(int(yyyy), int(mm), int(dd))
@@ -46,7 +51,8 @@ class Validation:
 
         return val
 
-    def validateFileName(self, val, _str='filename'):
+    @staticmethod
+    def validateFileName(val, _str='filename'):
         if not isinstance(val, str):
             raise ValueError(_str+' must have a string value')        
         if  not (val.endswith('.json') or val.endswith('.txt')):
@@ -54,12 +60,13 @@ class Validation:
 
         return val
 
-    def validateProduct(self, val, _str='Product'):
-        self.validateStr(val.getTitle(), 'Title')
-        self.validateFloatInRange(val.getPrice(), 'Price')
-        self.validateStr(val.getDescription(), 'Description')
-        self.validateURL(val.getImageURL(), 'Image URL')
-        self.validateDate(val.getCreatedAt(), 'Created At')
-        self.validateDate(val.getUpdatedAt(), 'Updated At')
+    @staticmethod
+    def validateProduct(val, _str='Product'):
+        Validation.validateStr(val.getTitle(), 'Title')
+        Validation.validateFloatInRange(val.getPrice(), 'Price')
+        Validation.validateStr(val.getDescription(), 'Description')
+        Validation.validateURL(val.getImageURL(), 'Image URL')
+        Validation.validateDate(val.getCreatedAt(), 'Created At')
+        Validation.validateDate(val.getUpdatedAt(), 'Updated At')
         
         return val

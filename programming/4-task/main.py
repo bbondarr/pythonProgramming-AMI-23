@@ -3,7 +3,10 @@ from Product import Product
 
 def mainMenu():
     c = ProductContainer()
-    c.readFromFile('products.json')
+    try:
+        c.readFromFile('products.json')
+    except (NameError, ValueError, AttributeError) as err:
+            print(err.args[0])
 
     print('-' * 50)
     print('Welcome to Product / Product Collection menu!')
@@ -21,15 +24,19 @@ def mainMenu():
         print('-' * 50)
 
         menuChoise = input()
-        if (menuChoise == '1'): print(c)
-        elif (menuChoise == '2'): addMenu(c)
-        elif (menuChoise == '3'): delMenu(c)
-        elif (menuChoise == '4'): findMenu(c)
-        elif (menuChoise == '5'): sortMenu(c)
-        elif (menuChoise == '6'): editMenu(c)
-        elif (menuChoise == '7'): writeMenu(c)
-        elif (menuChoise == '8'): break
-        else: print('-' * 50, 'Bad value')
+        try:
+            if (menuChoise == '1'): print(c)
+            elif (menuChoise == '2'): addMenu(c)
+            elif (menuChoise == '3'): delMenu(c)
+            elif (menuChoise == '4'): findMenu(c)
+            elif (menuChoise == '5'): sortMenu(c)
+            elif (menuChoise == '6'): editMenu(c)
+            elif (menuChoise == '7'): writeMenu(c)
+            elif (menuChoise == '8'): break
+            else: print('-' * 50, 'Bad value')
+        except (NameError, ValueError, AttributeError) as err:
+            print(err.args[0])
+
 
 
 def addMenu(_c):

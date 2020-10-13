@@ -1,7 +1,6 @@
 import json
 from datetime import date
-from Validation import Validation
-v = Validation()
+from Validation import Validation as v
 
 class Product:
     def __init__(self, 
@@ -25,7 +24,7 @@ class Product:
             '\nDescription: '+self.__description)
 
     def toJSON(self):
-        attr = [a for a in dir(self) if not a.startswith('__') and not callable(getattr(self, a))]
+        attr = self.getAttributes()
         copy = {}
         for a in attr:
             copy[a.replace('_Product__', '')] = str(getattr(self, a)) 
@@ -42,10 +41,15 @@ class Product:
         return self.__price
     def getCreatedAt(self): 
         return self.__createdAt
-    def getUpdatedAt(self): 
+    def getUpdatedAt(self):
         return self.__updatedAt
     def getDescription(self): 
         return self.__description
+
+    def getAttributes(self):
+        return [a for a in dir(self) if not a.startswith('__') and not callable(getattr(self, a))]
+    def getGetters(self):
+        return [a for a in dir(self) if a.startswith('get') and callable(getattr(self, a))]
 
     def setTitle(self, val): 
         val = v.validateStr(val, 'Title')
