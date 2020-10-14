@@ -72,19 +72,26 @@ class ProductContainer:
 
     def readFromFile(self, filename):
         filename = v.validateFileName(filename)
-
+        
         self.__productList = []
         with open(filename) as file:
             jsonLst = json.load(file)
 
+        i = 0
         for _dict in jsonLst:
-            self.__productList.append( Product(
-                _dict.get('title'), 
-                _dict.get('imageURL'),
-                _dict.get('price'), 
-                _dict.get('createdAt'),
-                _dict.get('updatedAt'), 
-                _dict.get('description')) )
+            i+=1
+            try:
+                p = Product(
+                    _dict.get('title'), 
+                    _dict.get('imageURL'),
+                    _dict.get('price'), 
+                    _dict.get('createdAt'),
+                    _dict.get('updatedAt'), 
+                    _dict.get('description'))
+            except ValueError as ve:
+                print('Product %d Error: ' % (i) + str(ve)); continue
+
+            self.__productList.append(p)
 
     def writeIntoFile(self, filename):
         filename = v.validateFileName(filename)

@@ -1,18 +1,22 @@
 import json
 from datetime import date
-from Validation import Validation as v
+from Validation import Validation as v, ERR_VALUE
 
 class Product:
     def __init__(self, 
         title, imageURL, price, createdAt, updatedAt, description, ID=None):
 
-        self.__ID = str(id(self)) if ID is None else ID
-        self.__title = v.validateStr(title, 'Title')
+        self.__ID = str(id(self)) if ID is None else str(ID)
+        self.__title = v.validateTitle(title, 'Title')
         self.__imageURL = v.validateURL(imageURL, 'Image URL')
         self.__price = v.validateFloatInRange(price, 'Price')
         self.__createdAt = v.validateDate(createdAt, 'Created At')
         self.__updatedAt = v.validateDate(updatedAt, 'Updated At')
         self.__description = v.validateStr(description, 'Description')
+
+        for a in self.getAttributes():
+            if getattr(self, a) == ERR_VALUE:
+                raise ValueError('Couldn\'t read Product from file')
 
     def __str__(self):
         return ('ID: '+str(self.__ID)+

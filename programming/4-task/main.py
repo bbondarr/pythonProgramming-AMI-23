@@ -3,41 +3,42 @@ from Product import Product
 
 def mainMenu():
     c = ProductContainer()
-    try:
-        c.readFromFile('products.json')
-    except (NameError, ValueError, AttributeError) as err:
-            print(err.args[0])
 
     print('-' * 50)
     print('Welcome to Product / Product Collection menu!')
     while True:
         print('-' * 50)
         print('''Choose one of the following opeartions:
-    1 - Print all products
-    2 - Add a product from input
-    3 - Delete product by ID
-    4 - Find product
-    5 - Sort the container
-    6 - Edit product
-    7 - Write into file
-    8 - Exit''')
+    1 - Read collection from file
+    2 - Print all products
+    3 - Add a product from input
+    4 - Delete product by ID
+    5 - Find product
+    6 - Sort the container
+    7 - Edit product
+    8 - Write into file
+    9 - Exit''')
         print('-' * 50)
 
         menuChoise = input()
         try:
-            if (menuChoise == '1'): print(c)
-            elif (menuChoise == '2'): addMenu(c)
-            elif (menuChoise == '3'): delMenu(c)
-            elif (menuChoise == '4'): findMenu(c)
-            elif (menuChoise == '5'): sortMenu(c)
-            elif (menuChoise == '6'): editMenu(c)
-            elif (menuChoise == '7'): writeMenu(c)
-            elif (menuChoise == '8'): break
+            if (menuChoise == '1'): readFromFileMenu(c)
+            elif (menuChoise == '2'): print(c)
+            elif (menuChoise == '3'): addMenu(c)
+            elif (menuChoise == '4'): delMenu(c)
+            elif (menuChoise == '5'): findMenu(c)
+            elif (menuChoise == '6'): sortMenu(c)
+            elif (menuChoise == '7'): editMenu(c)
+            elif (menuChoise == '8'): writeMenu(c)
+            elif (menuChoise == '9'): break
             else: print('-' * 50, 'Bad value')
         except (NameError, ValueError, AttributeError) as err:
-            print(err.args[0])
+            print(str(err))
 
-
+def readFromFileMenu(c):
+    fn = input('Enter filename (json/txt): ')
+    c.readFromFile(fn)
+    print('Collection succesfully read!')
 
 def addMenu(_c):
     t = input('Enter Product title (str): ')
@@ -61,7 +62,7 @@ def findMenu(c):
     print('Search results:\n', found)
 
 def sortMenu(c):
-    attr = input('Enter attribute to sort by:')
+    attr = input('Enter attribute to sort by: ')
     c.sort(attr)
     print('Collection succesfully sorted!')
 
@@ -73,7 +74,7 @@ def editMenu(c):
     print('Product succesfully edited!')
 
 def writeMenu(c):
-    fn = input('Enter file name:')
+    fn = input('Enter filename: ')
     c.writeIntoFile(fn)
     print('Collection succesfully written!')
 
