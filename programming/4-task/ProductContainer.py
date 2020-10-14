@@ -4,8 +4,9 @@ from Product import *
 from Validation import Validation as v
 
 class ProductContainer:
-    def __init__(self):
+    def __init__(self, attachedJSON=None):
         self.__productList = []
+        self.__fn = attachedJSON
 
     def __str__(self):
         productsStr = '[\n'
@@ -50,13 +51,13 @@ class ProductContainer:
         else: 
             raise NameError('No product with such ID found')
         
-        self.writeIntoFile('products.json')
+        if self.__fn: self.writeIntoFile(self.__fn)
 
     def add(self, product):
         product = v.validateProduct(product)
         self.__productList.append(product)
 
-        self.writeIntoFile('products.json')
+        if self.__fn: self.writeIntoFile(self.__fn)
 
     def edit(self, ID, attr, val):
         _attr = attr[0].upper() + attr[1:]
@@ -68,7 +69,7 @@ class ProductContainer:
         else: 
             raise NameError('No product with such ID found')
 
-        self.writeIntoFile('products.json')
+        if self.__fn: self.writeIntoFile(self.__fn)
 
     def readFromFile(self, filename):
         filename = v.validateFileName(filename)
