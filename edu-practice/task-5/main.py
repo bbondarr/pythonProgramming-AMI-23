@@ -75,8 +75,8 @@ def sliceMenu(c):
     end = input('Enter end position of deletion: ')
     start = v.validatePositiveInt(start, 'Start')
     end = v.validatePositiveInt(end, 'End')
-    if start > end:
-        raise ValueError('Start must be less than End')
+    if start > end or end >= len(c.lst()):
+        raise ValueError('Bad index value')
 
     for i in range(end-start+1):
         c.lst().pop(start)
