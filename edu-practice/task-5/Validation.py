@@ -1,4 +1,5 @@
 from strategies.Strategy import Strategy
+from LinkedList import LinkedList
 
 class Validation:
     def __init__(self): 
@@ -25,13 +26,6 @@ class Validation:
         return val
 
     @staticmethod
-    def validateStrategy(val):
-        if not isinstance(val, Strategy):
-            raise ValueError('Value must be a Strategy subclass')   
-
-        return val
-
-    @staticmethod
     def validateIndex(val, lst, _str='Insertion position'):
         if val > len(lst):
             raise IndexError(_str+' out of range')
@@ -51,5 +45,23 @@ class Validation:
             if len(val.lst()) == 0:
                 raise ValueError('Fill the list first')
             func(val)
+
+        return inner
+
+    @staticmethod
+    def validateLinkedList(func):
+        def inner(_self, val):
+            if not isinstance(val, LinkedList):
+                raise ValueError('Value must be of type LinkedList')
+            func(_self, val)
+
+        return inner
+
+    @staticmethod
+    def validateStrategy(func):  
+        def inner(_self, val):
+            if not isinstance(val, Strategy):
+                raise ValueError('Value must be a Strategy subclass') 
+            func(_self, val)
 
         return inner

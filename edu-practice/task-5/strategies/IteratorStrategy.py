@@ -9,7 +9,7 @@ class IteratorStrategy(Strategy):
         _iter = self.MersennePrimesIterator(N)
         for i in _iter:
             lst.insert(pos+_iter.i-1, i)
-            print(lst, len(lst))
+
         return lst
 
     def getName(self):

@@ -86,6 +86,7 @@ def sliceMenu(c):
 @v.validateContext
 @v.validateContextList
 def methodMenu(c):
-    print(alternationsReverse(c.lst()))
+    c.setList(alternationsReverse(c.lst()))
+    print(c.lst())
 
 menu()
