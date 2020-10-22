@@ -1,22 +1,21 @@
 import json
 from datetime import date
-from Validation import Validation
-v = Validation()
+from Validation import Validation as v
 
 class Product:
     def __init__(self, 
-        title, imageURL, price, createdAt, updatedAt, description, ID=None):
+        title, imageURL, price, createdAt, updatedAt, description, iD=None):
 
-        self.__ID = str(id(self)) if ID is None else ID
-        self.__title = v.validateStr(title, 'Title')
-        self.__imageURL = v.validateURL(imageURL, 'Image URL')
-        self.__price = v.validateFloatInRange(price, 'Price')
-        self.__createdAt = v.validateDate(createdAt, 'Created At')
-        self.__updatedAt = v.validateDate(updatedAt, 'Updated At')
-        self.__description = v.validateStr(description, 'Description')
+        self.__id = str(id(self)) if iD is None else str(iD)
+        self.setTitle(title)
+        self.setImageURL(imageURL)
+        self.setPrice(price)
+        self.setDescription(description)
+        self.setCreatedAt(createdAt)
+        self.setUpdatedAt(updatedAt)
 
     def __str__(self):
-        return ('ID: '+str(self.__ID)+
+        return ('ID: '+str(self.__id)+
             '\nProduct: '+self.__title+
             '\nImage URL: '+self.__imageURL+
             '\nPrice: '+str(self.__price)+
@@ -25,15 +24,23 @@ class Product:
             '\nDescription: '+self.__description)
 
     def toJSON(self):
-        attr = [a for a in dir(self) if not a.startswith('__') and not callable(getattr(self, a))]
+        attr = self.getAttributes()
         copy = {}
         for a in attr:
             copy[a.replace('_Product__', '')] = str(getattr(self, a)) 
             
         return json.dumps(copy, indent=4)      
 
+    def copy(self):
+        return Product(self.__title, 
+                        self.__imageURL, 
+                        self.__price, 
+                        self.__createdAt, 
+                        self.__updatedAt, 
+                        self.__description)
+
     def getID(self):
-        return self.__ID
+        return self.__id
     def getTitle(self): 
         return self.__title
     def getImageURL(self): 
@@ -42,24 +49,47 @@ class Product:
         return self.__price
     def getCreatedAt(self): 
         return self.__createdAt
-    def getUpdatedAt(self): 
+    def getUpdatedAt(self):
         return self.__updatedAt
     def getDescription(self): 
         return self.__description
 
+    @staticmethod
+    def getAttributes():
+        return [a[3].lower()+a[4:] for a in Product.getGetters()]
+    @staticmethod
+    def getGetters():
+        return [a for a in dir(Product) 
+                if (a.startswith('get') 
+                and a != 'getAttributes' and a != 'getGetters' 
+                and callable(getattr(Product, a)))]
+
+    @v.validateTitle
     def setTitle(self, val): 
-        val = v.validateStr(val, 'Title')
         self.__title = val
         self.__updatedAt = date.today()
+    
+    @v.validateURL
     def setImageURL(self, val):
-        val = v.validateURL(val, 'Image URL')
         self.__imageURL = val
         self.__updatedAt = date.today()
+    
+    @v.validateFloat
+    @v.validateFloatInRange
     def setPrice(self, val): 
-        val = v.validateFloatInRange(val, 'Price')
         self.__price = val
         self.__updatedAt = date.today()
+    
+    @v.validateStr
     def setDescription(self, val): 
-        val = v.validateStr(val, 'Description')
         self.__description = val
         self.__updatedAt = date.today()
+
+    @v.validateDate
+    def setCreatedAt(self, val):
+        self.__createdAt = val
+        self.__updatedAt = date.today()
+    
+    @v.validateDate
+    def setUpdatedAt(self, val):
+        self.__updatedAt = val

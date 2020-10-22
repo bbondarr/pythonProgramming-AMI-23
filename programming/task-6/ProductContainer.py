@@ -1,12 +1,19 @@
 import json
 from datetime import date
 from Product import Product
-from Validation import Validation
-v = Validation()
+from Validation import Validation as v
+        
+class ProductContainer: 
 
-class ProductContainer:
-    def __init__(self):
+    class PC_Memento:
+        def __init__(self, collection):
+            self.listSnapshot = []
+            for p in collection._ProductContainer__productList:
+                self.listSnapshot.append(p.copy())
+
+    def __init__(self, attachedJSON=None):
         self.__productList = []
+        self.__fn = attachedJSON
 
     def __str__(self):
         productsStr = '[\n'
@@ -15,23 +22,6 @@ class ProductContainer:
         productsStr += ']'
 
         return productsStr
-
-    def find(self, key):
-        res = ProductContainer()
-        key = str(key)
-        for p in self.__productList:
-            if key == p.getID(): res.add(p)
-
-            if key == str(p.getPrice()): res.add(p)
-
-            if p.getTitle().find(key) != -1: res.add(p)
-            if p.getDescription().find(key) != -1: res.add(p)
-            if p.getImageURL().find(key) != -1: res.add(p)
-
-            if str(p.getCreatedAt()).find(key) != -1: res.add(p)
-            if str(p.getUpdatedAt()).find(key) != -1: res.add(p)
-
-        return res if len(res) != 1 else res._ProductContainer__productList[0]
 
     def __len__(self):
         return len(self.__productList)
@@ -50,6 +40,16 @@ class ProductContainer:
         except AttributeError: 
             raise AttributeError('\'Product\'object has no attribute \''+attr+'\'')
 
+    def find(self, key):
+            res = ProductContainer()
+            key = str(key).lower()
+            for p in self.__productList:
+                for a in Product.getGetters():
+                    if str(getattr(p, a)()).lower().find(key) != -1:
+                        res.add(p)
+
+            return res if len(res) != 1 else res._ProductContainer__productList[0]
+
     def delete(self, ID):
         i = -1
         for p in self.__productList:
@@ -58,13 +58,12 @@ class ProductContainer:
         else: 
             raise NameError('No product with such ID found')
         
-        self.writeIntoFile('products.json')
+        if self.__fn: self.writeIntoFile(self.__fn)
 
-    def add(self, product):
-        product = v.validateProduct(product)
+    def add(self, product): 
         self.__productList.append(product)
-
-        self.writeIntoFile('products.json')
+        print(self)
+        if self.__fn: self.writeIntoFile(self.__fn)
 
     def edit(self, ID, attr, val):
         _attr = attr[0].upper() + attr[1:]
@@ -72,28 +71,32 @@ class ProductContainer:
         for p in self.__productList:
             if p.getID() == ID: 
                 getattr(p, _attr)(val)
+                break
+        else: 
+            raise NameError('No product with such ID found')
 
-        self.writeIntoFile('products.json')
+        if self.__fn: self.writeIntoFile(self.__fn)
 
-    def readFromFile(self, filename):
-        filename = v.validateFileName(filename)
-
+    @v.validateStr
+    @v.validateFileName
+    def readFromFile(self, filename):        
         self.__productList = []
         with open(filename) as file:
             jsonLst = json.load(file)
 
+        i = 0
         for _dict in jsonLst:
-            self.__productList.append( Product(
-                _dict.get('title'), 
-                _dict.get('imageURL'),
-                _dict.get('price'), 
-                _dict.get('createdAt'),
-                _dict.get('updatedAt'), 
-                _dict.get('description')) )
+            i+=1
+            try:
+                p = Product(**{a:_dict.get(a) for a in Product.getAttributes()})
+            except ValueError as ve:
+                print('Product %d Error: ' % (i) + str(ve)); continue
 
-    def writeIntoFile(self, filename):
-        filename = v.validateFileName(filename)
-        
+            self.__productList.append(p)
+
+    @v.validateStr
+    @v.validateFileName
+    def writeIntoFile(self, filename):     
         file = open(filename, mode='w')
         file.write('[')
         for p in self.__productList:
@@ -102,3 +105,10 @@ class ProductContainer:
                 file.write(', ')
         file.write(']')
         file.close()
+
+    # MEMENTO METHODS
+    def save(self):
+        return self.PC_Memento(self)
+
+    def restore(self, memento):
+        self.__productList = memento.listSnapshot.copy()

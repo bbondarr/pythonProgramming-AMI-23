@@ -1,65 +1,91 @@
 import re
-from datetime import date
+from datetime import date    
 
 class Validation:
     def __init__(self): 
         pass
 
-    def validateFloat(self, val, _str):
-        try:
-            val = float(val)
-        except ValueError: 
-            raise ValueError(_str+' must have a float value')
-        
-        return val        
+    @staticmethod
+    def validateFloat(func):
+        def inner (_self, val):
+            try:
+                val = round(float(val), 2)
+                func(_self, val)
+            except ValueError: 
+                raise ValueError('Value must be float type')            
 
-    def validateFloatInRange(self, val, _str):
-        val = self.validateFloat(val, _str)
-        MIN_VAL, MAX_VAL = 0, 5000
-        if not (MIN_VAL < val and val <= MAX_VAL): 
-            raise ValueError(_str+' must be less than %d' %(MAX_VAL))
+        return inner
 
-        return val
+    @staticmethod
+    def validateFloatInRange(func):
+        def inner (_self, val):
+            MIN_VAL, MAX_VAL = 0, 5000
+            if not (MIN_VAL < val and val <= MAX_VAL): 
+                raise ValueError('Value must be less than %d' %(MAX_VAL))   
+            func(_self, val)        
 
-    def validateStr(self, val, _str):
-        if not isinstance(val, str):
-            raise ValueError(_str+' must have a string value')
-        # if re.search(r'[^A-Za-z ]+', val) is not None: 
-        #     raise ValueError(_str+' must contain only letters')
-        
-        return val     
+        return inner      
 
-    def validateURL(self, val, _str):
-        val = self.validateStr(val, _str)
-        regexSrch = re.search(r'[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)', val)
-        if regexSrch is None: 
-            raise ValueError('Bad URL for '+_str)
-        
-        return val 
+    @staticmethod
+    def validateStr(func):
+        def inner (_self, val):
+            if not isinstance(val, str):
+                raise ValueError('Value must be str type')
+            func(_self, val)            
 
-    def validateDate(self, val, _str):
-        if isinstance(val, str):
-            [yyyy, mm, dd] = val.split('-')
-            val = date(int(yyyy), int(mm), int(dd))
-        if not isinstance(val, date):
-            raise ValueError(_str+' must have a date value')
+        return inner     
 
-        return val
+    @staticmethod
+    def validateTitle(func):
+        def inner (_self, val):
+            if re.search(r'[^A-Za-z ]+', val) is not None: 
+                raise ValueError('Value must contain only letters')    
+            func(_self, val)            
 
-    def validateFileName(self, val, _str='filename'):
-        if not isinstance(val, str):
-            raise ValueError(_str+' must have a string value')        
-        if  not (val.endswith('.json') or val.endswith('.txt')):
-            raise ValueError(_str+' must be json or txt format')
+        return inner
 
-        return val
+    @staticmethod
+    def validateURL(func):
+        def inner (_self, val):
+            regexSrch = re.search(r'[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)', val)
+            if regexSrch is None: 
+                raise ValueError('Bad URL value')            
+            func(_self, val)
 
-    def validateProduct(self, val, _str='Product'):
-        self.validateStr(val.getTitle(), 'Title')
-        self.validateFloatInRange(val.getPrice(), 'Price')
-        self.validateStr(val.getDescription(), 'Description')
-        self.validateURL(val.getImageURL(), 'Image URL')
-        self.validateDate(val.getCreatedAt(), 'Created At')
-        self.validateDate(val.getUpdatedAt(), 'Updated At')
-        
-        return val
+        return inner
+
+    @staticmethod
+    def validateDate(func):
+        def inner (_self, val):
+            try:
+                if isinstance(val, str):
+                    [yyyy, mm, dd] = val.split('-')
+                    val = date(int(yyyy), int(mm), int(dd))
+            except ValueError:
+                raise ValueError('Value must be Date type')
+            func(_self, val)
+
+        return inner
+
+    @staticmethod
+    def validateFileName(func):
+        def inner (_self, val): 
+            if  not (val.endswith('.json') or val.endswith('.txt')):
+                raise ValueError('Value must be json or txt format')
+            func(_self, val)
+
+        return inner
+
+    @staticmethod
+    def validateProduct(func):
+        def inner (_self, val):
+            Validation.validateStr(func)
+            Validation.validateFloatInRange(func)
+            Validation.validateStr(func)
+            Validation.validateURL(func)
+            Validation.validateDate(func)
+            Validation.validateDate(func)
+            func(_self, val)
+            return val
+
+        return inner
