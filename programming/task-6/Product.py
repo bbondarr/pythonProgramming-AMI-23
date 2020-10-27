@@ -14,6 +14,8 @@ class Product:
         self.setCreatedAt(createdAt)
         self.setUpdatedAt(updatedAt)
 
+        self.compareDates(self.__createdAt, self.__updatedAt)
+
     def __str__(self):
         return ('ID: '+str(self.__id)+
             '\nProduct: '+self.__title+
@@ -93,3 +95,7 @@ class Product:
     @v.validateDate
     def setUpdatedAt(self, val):
         self.__updatedAt = val
+
+    @v.validateTwoDates
+    def compareDates(self, date1, date2):
+        pass

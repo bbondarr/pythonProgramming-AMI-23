@@ -47,7 +47,7 @@ class Validation:
     @staticmethod
     def validateURL(func):
         def inner (_self, val):
-            regexSrch = re.search(r'[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)', val)
+            regexSrch = re.search(r'^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&\'\(\)\*\+,;=.]+$', val)
             if regexSrch is None: 
                 raise ValueError('Bad URL value')            
             func(_self, val)
@@ -64,6 +64,15 @@ class Validation:
             except ValueError:
                 raise ValueError('Value must be Date type')
             func(_self, val)
+
+        return inner
+
+    @staticmethod
+    def validateTwoDates(func):
+        def inner(_self, val1, val2):
+            if val1 > val2:
+                raise ValueError('Bad Date values')
+            func(_self, val1, val2)
 
         return inner
 
