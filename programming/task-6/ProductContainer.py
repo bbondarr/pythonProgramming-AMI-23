@@ -7,9 +7,9 @@ class ProductContainer:
 
     class PC_Memento:
         def __init__(self, collection):
-            self.listSnapshot = []
-            for p in collection._ProductContainer__productList:
-                self.listSnapshot.append(p.copy())
+            self.listSnapshot = [p.copy() 
+                for p in collection._ProductContainer__productList]
+
 
     def __init__(self, attachedJSON=None):
         self.__productList = []
@@ -62,7 +62,6 @@ class ProductContainer:
 
     def add(self, product): 
         self.__productList.append(product)
-        print(self)
         if self.__fn: self.writeIntoFile(self.__fn)
 
     def edit(self, ID, attr, val):
@@ -74,7 +73,7 @@ class ProductContainer:
                 break
         else: 
             raise NameError('No product with such ID found')
-
+        
         if self.__fn: self.writeIntoFile(self.__fn)
 
     @v.validateStr
@@ -112,3 +111,4 @@ class ProductContainer:
 
     def restore(self, memento):
         self.__productList = memento.listSnapshot.copy()
+        if self.__fn: self.writeIntoFile(self.__fn)

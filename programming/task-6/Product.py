@@ -6,7 +6,7 @@ class Product:
     def __init__(self, 
         title, imageURL, price, createdAt, updatedAt, description, iD=None):
 
-        self.__id = str(id(self)) if iD is None else str(iD)
+        self.__iD = str(id(self)) if iD is None else str(iD)
         self.setTitle(title)
         self.setImageURL(imageURL)
         self.setPrice(price)
@@ -17,7 +17,7 @@ class Product:
         self.compareDates(self.__createdAt, self.__updatedAt)
 
     def __str__(self):
-        return ('ID: '+str(self.__id)+
+        return ('ID: '+str(self.__iD)+
             '\nProduct: '+self.__title+
             '\nImage URL: '+self.__imageURL+
             '\nPrice: '+str(self.__price)+
@@ -29,7 +29,7 @@ class Product:
         attr = self.getAttributes()
         copy = {}
         for a in attr:
-            copy[a.replace('_Product__', '')] = str(getattr(self, a)) 
+            copy[a] = str(getattr(self, '_Product__'+a)) 
             
         return json.dumps(copy, indent=4)      
 
@@ -42,7 +42,7 @@ class Product:
                         self.__description)
 
     def getID(self):
-        return self.__id
+        return self.__iD
     def getTitle(self): 
         return self.__title
     def getImageURL(self): 
@@ -94,6 +94,7 @@ class Product:
     
     @v.validateDate
     def setUpdatedAt(self, val):
+        self.compareDates(self.__createdAt, val)
         self.__updatedAt = val
 
     @v.validateTwoDates
