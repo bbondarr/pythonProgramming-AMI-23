@@ -1,8 +1,8 @@
 import unittest
 
-from .testData import testData, Product
-from ..ProductContainer import ProductContainer
-from ..SnapshotCaretaker import Caretaker
+from testData import testData, Product
+from ProductContainer import ProductContainer
+from SnapshotCaretaker import Caretaker
 
 class MenuTest(unittest.TestCase):
     def setUp(self):
@@ -24,6 +24,17 @@ class MenuTest(unittest.TestCase):
             self.assertEqual(len(self.container), i+1)
             self.assertIn(p, self.lst)
 
+        lameVals = [('123', 'test.com.ua', 49.50, '2020-01-01', '2020-04-04', 'test'),
+                    ('ttl', 'ur^l.com.ua', 49.50, '2020-01-01', '2020-04-04', 'test'),
+                    ('ttl', 'test.com.ua', 'str', '2020-01-01', '2020-04-04', 'test'),
+                    ('ttl', 'test.com.ua', 49.50, '3030-01-01', '2020-04-04', 'test'),
+                    ('ttl', 'test.com.ua', 49.50, '2020-01-01', '2002-04-04', 'test'),
+                    ('ttl', 'test.com.ua', 49.50, '2020-01-01', '2002-04-04', [])]
+        
+        for args in lameVals:
+            with self.assertRaises(ValueError):
+                self.container.add(Product(*args))
+
     def testDelete(self):
         # Deleting all elements in a loop 
         for i, p in reversed(list(enumerate(self.testList))):
@@ -36,9 +47,11 @@ class MenuTest(unittest.TestCase):
 
     def testSort(self):
         # Sorting by all properties in a loop
-        for i, p in enumerate(Product.getAttributes()):           
-            self.testList.sort(key=lambda p: getattr(p, Product.getGetters()[i])())
-            self.container.sort(Product.getAttributes()[i])
+        for i in range(len((Product.getAttributes()))):    
+            self.container.sort(Product.getAttributes()[i])       
+            self.testList.sort(key=lambda p: 
+                                getattr(p, Product.getGetters()[i])())
+
             self.assertListEqual(self.lst, self.testList)
 
         with self.assertRaises(AttributeError):

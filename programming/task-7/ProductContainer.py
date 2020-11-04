@@ -52,10 +52,9 @@ class ProductContainer:
             return res if len(res) != 1 else res._ProductContainer__productList[0]
 
     def delete(self, ID):
-        i = -1
         for p in self.__productList:
             if p.getID() == ID: 
-                self.__productList.pop(i); break        
+                self.__productList.remove(p); break        
         else: 
             raise NameError('No product with such ID found')
         
