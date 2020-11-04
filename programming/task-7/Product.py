@@ -14,7 +14,7 @@ class Product:
         self.setCreatedAt(createdAt)
         self.setUpdatedAt(updatedAt)
 
-        self.compareDates(self.__createdAt, self.__updatedAt)
+        Product.compareDates(self.__createdAt, self.__updatedAt)
 
     def __str__(self):
         return ('ID: '+str(self.__iD)+
@@ -25,10 +25,18 @@ class Product:
             '\nUpdated At: '+str(self.__updatedAt)+
             '\nDescription: '+self.__description)
 
+    def __eq__(self, other):
+        return (self.__iD == other.getID() and
+                self.__title == other.getTitle() and
+                self.__imageURL == other.getImageURL() and
+                self.__price == other.getPrice() and
+                self.__createdAt == other.getCreatedAt() and
+                self.__updatedAt == other.getUpdatedAt() and
+                self.__description == other.getDescription())
+
     def toJSON(self):
-        attr = self.getAttributes()
         copy = {}
-        for a in attr:
+        for a in self.getAttributes():
             copy[a] = str(getattr(self, '_Product__'+a)) 
             
         return json.dumps(copy, indent=4)      
@@ -39,7 +47,8 @@ class Product:
                         self.__price, 
                         self.__createdAt, 
                         self.__updatedAt, 
-                        self.__description)
+                        self.__description,
+                        self.__iD)
 
     def getID(self):
         return self.__iD
@@ -63,7 +72,12 @@ class Product:
     def getGetters():
         return [a for a in dir(Product) 
                 if (a.startswith('get') 
-                and a != 'getAttributes' and a != 'getGetters' 
+                and a != 'getAttributes' and a != 'getGetters' and a != 'getSetters'
+                and callable(getattr(Product, a)))]
+    @staticmethod
+    def getSetters():
+        return [a for a in dir(Product) 
+                if (a.startswith('set') 
                 and callable(getattr(Product, a)))]
 
     @v.validateTitle
@@ -94,9 +108,10 @@ class Product:
     
     @v.validateDate
     def setUpdatedAt(self, val):
-        self.compareDates(self.__createdAt, val)
+        Product.compareDates(self.__createdAt, val)
         self.__updatedAt = val
 
+    @staticmethod
     @v.validateTwoDates
-    def compareDates(self, date1, date2):
+    def compareDates(date1, date2):
         pass

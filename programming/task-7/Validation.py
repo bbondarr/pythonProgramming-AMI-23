@@ -61,6 +61,8 @@ class Validation:
                 if isinstance(val, str):
                     [yyyy, mm, dd] = val.split('-')
                     val = date(int(yyyy), int(mm), int(dd))
+                if val > date.today():
+                    raise ValueError('Bad Date value')
             except ValueError:
                 raise ValueError('Value must be Date type')
             func(_self, val)
@@ -69,10 +71,10 @@ class Validation:
 
     @staticmethod
     def validateTwoDates(func):
-        def inner(_self, val1, val2):
+        def inner(val1, val2):
             if val1 > val2:
                 raise ValueError('Bad Date values')
-            func(_self, val1, val2)
+            func(val1, val2)
 
         return inner
 

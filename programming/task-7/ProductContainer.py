@@ -46,7 +46,8 @@ class ProductContainer:
             for p in self.__productList:
                 for a in Product.getGetters():
                     if str(getattr(p, a)()).lower().find(key) != -1:
-                        res.add(p)
+                        if p not in res._ProductContainer__productList: 
+                            res.add(p)
 
             return res if len(res) != 1 else res._ProductContainer__productList[0]
 
