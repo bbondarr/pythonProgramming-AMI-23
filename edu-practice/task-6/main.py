@@ -3,8 +3,14 @@ from strategies.IteratorStrategy import IteratorStrategy
 from strategies.ReadFileStrategy import ReadFileStrategy
 from algorithm import alternationsReverse
 
+from Observer import Observer, Event
+from Logger import FileLogger
+
 def menu():
     c = Context()
+    Observer.attach('add', FileLogger.logAdd)
+    Observer.attach('remove', FileLogger.logRemove)
+    Observer.attach('method', FileLogger.logMethodExecution)
 
     print('-'*60)
     print('Welcome to pattern \'Strategy\' menu!')
@@ -39,6 +45,8 @@ def menu():
 
 @v.validateContext
 def generateMenu(c):
+    former = c.lst().copy()
+
     if c.strategy() == 'readfile':
         pos = input('Enter the start position (0 required for the 1st time): ')
         if len(c.lst()) == 0: pos = 0; print('Set to 0')
@@ -58,14 +66,17 @@ def generateMenu(c):
         n = v.validatePositiveInt(n, 'Quantity')
 
         c.executeStrategy(pos, n)
-
+        
+    Event.update('add', former, pos, c.lst())
     print('Collection succesfully generated!')
 
 @v.validateContext
 @v.validateContextList
 def deleteMenu(c):
     pos = int(input('Enter position of the element you want to delete: '))
+    former = c.lst().copy()
     c.lst().pop(pos)
+    Event.update('add', former, pos, c.lst())
     print('Item succesfully deleted!')
 
 @v.validateContext
@@ -78,15 +89,19 @@ def sliceMenu(c):
     if start > end or end >= len(c.lst()):
         raise ValueError('Bad index value')
 
-    for i in range(end-start+1):
+    former = c.lst().copy()
+    for _ in range(end-start+1):
         c.lst().pop(start)
 
+    Event.update('remove', former, [start, end], c.lst())
     print('Items succesfully deleted!')
 
 @v.validateContext
 @v.validateContextList
 def methodMenu(c):
+    former = c.lst().copy()
     c.setList(alternationsReverse(c.lst()))
+    Event.update('method', former, c.lst())
     print(c.lst())
 
 menu()

@@ -1,29 +1,26 @@
 from Validation import Validation as v
 
 class Observer:
-    def __init__(self, fn, events):
-        self.fn = v.validateFileName(fn)
-        self.events = events
+    listeners = dict()
 
-    def add(self, event):
-        Logger.printToFile(self.fn, event)
+    @staticmethod
+    def attach(key, method):
+        Observer.listeners[key] = method
 
-    def remove(self, event):
-        Logger.printToFile(self.fn, event)
+    # Not using it in code, but in case of emergency...
+    @staticmethod
+    def detach(key):
+        Observer.listeners.pop(key)
 
-    def change(self, event):
-        Logger.printToFile(self.fn, event)
 
 class Event:
-    def __init__(self):
-        pass
-
-
-class Logger:
     @staticmethod
-    def printToFile(fn, method, primary, elems, new):
-        with open(fn) as file:
-            if method == 'add':
-                file.write('added') 
-            elif method == 'remove':
-                file.write('removed') 
+    def update(key, former, pos, result=None):
+        for l in Observer.listeners:
+            if key == l:
+                if result is not None:
+                    Observer.listeners[l](former, pos, result)
+                else:
+                    Observer.listeners[l](former, pos)
+                break
+
