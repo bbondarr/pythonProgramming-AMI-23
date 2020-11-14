@@ -1,0 +1,41 @@
+[{
+    "createdAt": "2015-12-12",
+    "description": "mleko",
+    "iD": "21488352",
+    "imageURL": "molokiya.com.ua",
+    "price": "37.75",
+    "title": "Milk",
+    "updatedAt": "2020-10-21"
+}, {
+    "createdAt": "2019-02-02",
+    "description": "DESCRIPTION",
+    "iD": "24879984",
+    "imageURL": "www.url.com.ua",
+    "price": "1.0",
+    "title": "TEST",
+    "updatedAt": "2020-11-04"
+}, {
+    "createdAt": "2019-09-05",
+    "description": "W kraine zapomnienia",
+    "iD": "21487824",
+    "imageURL": "www.google.com.sw",
+    "price": "55.0",
+    "title": "Chocolate",
+    "updatedAt": "2019-09-05"
+}, {
+    "createdAt": "2020-09-12",
+    "description": "nice beer at reasonable price",
+    "iD": "21487896",
+    "imageURL": "www.pryvatna.ua",
+    "price": "45.5",
+    "title": "Lwiwske Eksportowe",
+    "updatedAt": "2020-10-21"
+}, {
+    "createdAt": "2020-02-02",
+    "description": "dwaae dcaea",
+    "iD": "29479312",
+    "imageURL": "www.url",
+    "price": "4909.0",
+    "title": "tttttttttttt",
+    "updatedAt": "2020-11-04"
+}]

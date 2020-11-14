@@ -1,0 +1,25 @@
+[{
+    "createdAt": "2020-01-01",
+    "description": "test",
+    "iD": "1",
+    "imageURL": "test.com.ua",
+    "price": "49.5",
+    "title": "otherTitle",
+    "updatedAt": "2020-11-04"
+}, {
+    "createdAt": "2019-05-05",
+    "description": "test0",
+    "iD": "2",
+    "imageURL": "test.com",
+    "price": "3999.35",
+    "title": "testTwo",
+    "updatedAt": "2020-11-04"
+}, {
+    "createdAt": "2020-05-05",
+    "description": "test",
+    "iD": "3",
+    "imageURL": "new.url.ua",
+    "price": "49.51",
+    "title": "testThree",
+    "updatedAt": "2020-11-04"
+}]
