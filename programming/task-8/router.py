@@ -1,7 +1,7 @@
 import json
 
 from flask import Flask, request, jsonify
-from sqlalchemy import desc
+from sqlalchemy import desc, cast
 
 from app import app, db, ma
 from ProductModel import Product
@@ -26,18 +26,17 @@ def getAll():
             else:
                 productQuery = productQuery.order_by(sortBy)
 
-        # if _filter:
-        #     query = Product.query.filter(
-        #                 Product._Product__iD.like('%'+_filter+'%'))
-
-        #     for attr in Product.getAttributes():
-        #         subquery = productQuery.filter(
-        #                 getattr(Product, '_Product__'+attr).like('%'+_filter+'%'))
-        #         print(subquery)
-        #         query.union(subquery)
+        if _filter:
+            query = Product.query.filter(
+                        Product._Product__title.like('%'+_filter+'%') |
+                        Product._Product__imageURL.like('%'+_filter+'%') |
+                        Product._Product__description.like('%'+_filter+'%') |
+                        cast(Product._Product__iD, db.String).like('%'+_filter+'%') |
+                        cast(Product._Product__price, db.String).like('%'+_filter+'%') |
+                        cast(Product._Product__createdAt, db.String).like('%'+_filter+'%') |
+                        cast(Product._Product__updatedAt, db.String).like('%'+_filter+'%'))
 
             productQuery = query
-                
         
 
         products = productQuery.all()
