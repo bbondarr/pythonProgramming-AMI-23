@@ -1,9 +1,19 @@
 import re
 from datetime import date    
 
+
 class Validation:
     def __init__(self): 
         pass
+
+    @staticmethod
+    def validateID(val):
+        try:
+            val = int(val)
+            if val <= 0:
+                 raise ValueError('ID must be a postitve integer')  
+        except ValueError: 
+            raise ValueError('ID must be a postitve integer')            
 
     @staticmethod
     def validateFloat(func):
@@ -79,15 +89,6 @@ class Validation:
         return inner
 
     @staticmethod
-    def validateProduct(func):
-        def inner (_self, val):
-            Validation.validateStr(func)
-            Validation.validateFloatInRange(func)
-            Validation.validateStr(func)
-            Validation.validateURL(func)
-            Validation.validateDate(func)
-            Validation.validateDate(func)
-            func(_self, val)
-            return val
-
-        return inner
+    def validateNotNoneProduct(product):
+        if product is None:
+            raise AttributeError('No product with such ID')

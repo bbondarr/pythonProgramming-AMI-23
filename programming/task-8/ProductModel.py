@@ -6,19 +6,21 @@ from Validation import Validation as v
 
 
 class Product(db.Model):
-    _Product__iD = db.Column(db.Integer, primary_key=True)
-    _Product__title = db.Column(db.String, primary_key=True)
-    _Product__imageURL = db.Column(db.String, primary_key=True)
-    _Product__price = db.Column(db.Float, primary_key=True)
-    _Product__createdAt = db.Column(db.String, primary_key=True)
-    _Product__updatedAt = db.Column(db.String, primary_key=True)
-    _Product__description = db.Column(db.Text, primary_key=True)
+    __tablename__ = 'Products'
+    _Product__iD = db.Column('id', db.Integer, primary_key=True)
+    _Product__title = db.Column('title', db.String, nullable=False)
+    _Product__imageURL = db.Column('imageURL', db.String, nullable=False)
+    _Product__price = db.Column('price', db.Float, nullable=False)
+    _Product__createdAt = db.Column('createdAt', db.String, nullable=False)
+    _Product__updatedAt = db.Column('updatedAt', db.String, nullable=False)
+    _Product__description = db.Column('description', db.Text, nullable=False)
 
 
     def __init__(self, 
         title, imageURL, price, createdAt, updatedAt, description, iD=None):
 
-        self.__iD = str(iD)
+        if iD:  
+            self.__iD = str(iD)
         self.setTitle(title)
         self.setImageURL(imageURL)
         self.setPrice(price)

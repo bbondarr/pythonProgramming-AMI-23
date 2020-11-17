@@ -1,10 +1,13 @@
 import json
 
 from flask import Flask, request, jsonify
+from sqlalchemy import desc
 
 from app import app, db, ma
 from ProductModel import Product
 from ProductSchema import ProductSchema
+from Validation import Validation as v
+
 
 productSchema = ProductSchema()
 productsSchema = ProductSchema(many=True)
@@ -12,9 +15,33 @@ productsSchema = ProductSchema(many=True)
 @app.route('/product', methods=['GET'])
 def getAll():
     try:
-        products = Product.query.all()
-        result = productsSchema.dump(products)
+        sortBy = request.args.get('sort', default=None, type=str)
+        _filter = request.args.get('filter', default=None, type=str)
 
+        productQuery = Product.query
+
+        if sortBy in Product.getAttributes(): 
+            if sortBy.startswith('-'):
+                productQuery = productQuery.order_by(desc(sortBy[1:]))
+            else:
+                productQuery = productQuery.order_by(sortBy)
+
+        # if _filter:
+        #     query = Product.query.filter(
+        #                 Product._Product__iD.like('%'+_filter+'%'))
+
+        #     for attr in Product.getAttributes():
+        #         subquery = productQuery.filter(
+        #                 getattr(Product, '_Product__'+attr).like('%'+_filter+'%'))
+        #         print(subquery)
+        #         query.union(subquery)
+
+            productQuery = query
+                
+        
+
+        products = productQuery.all()
+        result = productsSchema.dump(products)
         return jsonify({'status': 'success'}, 
                         {'products': result}), 200
     except Exception as e:
@@ -24,15 +51,9 @@ def getAll():
 @app.route('/product', methods=['POST'])
 def post():
     try:
-        id = request.json['id']
-        title = request.json['title']
-        imageURL = request.json['imageURL']
-        price = request.json['price']
-        createdAt = request.json['createdAt']
-        updatedAt = request.json['updatedAt']
-        description = request.json['description']
-
-        newProduct = Product(title, imageURL, price, createdAt, updatedAt, description, id)
+        newProduct = Product(**
+            {a:request.json[a] for a in Product.getAttributes() if a != 'iD'}
+        )
         db.session.add(newProduct)
         db.session.commit()
 
@@ -46,8 +67,10 @@ def post():
 @app.route('/product/<id>', methods=['GET'])
 def get(id):
     try:
+        v.validateID(id)
         product = Product.query.filter(Product._Product__iD == id).first()
-        
+        v.validateNotNoneProduct(product)
+
         result = productSchema.dump(product)
         return jsonify({'status': 'success'}, 
                         {'product': result}), 200
@@ -58,7 +81,9 @@ def get(id):
 @app.route('/product/<id>', methods=['DELETE'])
 def delete(id):
     try:
+        v.validateID(id)
         product = Product.query.filter(Product._Product__iD == id).first()
+        v.validateNotNoneProduct(product)
 
         db.session.delete(product)
         db.session.commit()
@@ -73,7 +98,10 @@ def delete(id):
 @app.route('/product/<id>', methods=['PATCH'])
 def patch(id):
     try:
+        v.validateID(id)
         product = Product.query.filter(Product._Product__iD == id).first()
+        v.validateNotNoneProduct(product)
+
         field = None
         attr = None
 
