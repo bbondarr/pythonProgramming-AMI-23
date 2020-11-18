@@ -1,3 +1,4 @@
+#import concurrent.futures
 import threading
 
 from Context import Context, v
@@ -7,6 +8,24 @@ from algorithm import alternationsReverse
 
 from Observer import Observer, Event
 from Logger import FileLogger
+
+# def threadsOperator(func, contexts, args):
+#     with concurrent.futures.ThreadPoolExecutor() as executor:
+#         for i, c in enumerate(contexts, start=1):
+#             print(f'Thread {i} started...')
+#             executor.submit(func, c, *args)
+#             print(f'Thread {i} finished!')
+
+def threadsOperator(func, contexts, args):
+    threads = []
+    for i, c in enumerate(contexts, start=1):
+        t = threading.Thread(target=func, args=(c, *args))
+        print(f'Thread {i} started...'); t.start()
+        threads.append(t)
+
+    for i, t in enumerate(threads, start=1):
+        print(f'Thread {i} finished!'); t.join()
+
 
 def menu():
     c1 = Context()
@@ -82,13 +101,7 @@ def deleteMenu(c1, c2):
 
     pos = int(input('Enter position of the element you want to delete: '))
     
-    t1 = threading.Thread(target=delete, args=(c1, pos))
-    t2 = threading.Thread(target=delete, args=(c2, pos))
-
-    print('Thread 1 started...'); t1.start()
-    print('Thread 2 started...'); t2.start()
-    print('Thread 1 finished!');  t1.join()
-    print('Thread 2 finished!');  t2.join()
+    threadsOperator(delete, (c1, c2), [pos])
 
     print('Item succesfully deleted!')
 
@@ -108,13 +121,7 @@ def sliceMenu(c1, c2):
     start = v.validatePositiveInt(start, 'Start')
     end = v.validatePositiveInt(end, 'End')
     
-    t1 = threading.Thread(target=_slice, args=(c1, start, end))
-    t2 = threading.Thread(target=_slice, args=(c2, start, end))
-
-    print('Thread 1 started...'); t1.start()
-    print('Thread 2 started...'); t2.start()
-    print('Thread 1 finished!');  t1.join()
-    print('Thread 2 finished!');  t2.join()
+    threadsOperator(_slice, (c1, c2), (start, end))
 
     print('Items succesfully deleted!')
 
@@ -125,21 +132,9 @@ def methodMenu(c1, c2):
         Event.update('method', former, c.lst())
         print(c.lst())
 
-    t1 = threading.Thread(target=method, args=[c1])
-    t2 = threading.Thread(target=method, args=[c2])
-
-    print('Thread 1 started...'); t1.start()
-    print('Thread 2 started...'); t2.start()
-    print('Thread 1 finished!');  t1.join()
-    print('Thread 2 finished!');  t2.join()
+    threadsOperator(method, (c1, c2), [])
 
 def printMenu(c1, c2):
-    t1 = threading.Thread(target=print, args=c1.lst())
-    t2 = threading.Thread(target=print, args=c2.lst())
-
-    print('Thread 1 started...'); t1.start()
-    print('Thread 2 started...'); t2.start()
-    print('Thread 1 finished!');  t1.join()
-    print('Thread 2 finished!');  t2.join()
+    threadsOperator(print, (c1.lst(), c2.lst()), [])
 
 menu()

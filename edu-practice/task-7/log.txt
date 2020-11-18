@@ -152,3 +152,149 @@ LinkedList after reversing alternations:[ 2 -2 1 -66 4 ]
 Former LinkedList:[ 3 7 2305843009213693951 ]
 LinkedList after reversing alternations:[ 3 7 2305843009213693951 ]
 
+Former LinkedList:[ ]
+Position of adding:0
+LinkedList with newly added elements:[ 2 3 -5 6 -3 4 5 -3 -2 1 -66 ]
+
+Former LinkedList:[ ]
+Position of adding:0
+LinkedList with newly added elements:[ 3 7 31 127 8191 131071 ]
+
+Former LinkedList:[ ]
+Position of adding:0
+LinkedList with newly added elements:[ 2 3 -5 6 -3 4 5 -3 -2 1 -66 ]
+
+Former LinkedList:[ ]
+Position of adding:0
+LinkedList with newly added elements:[ 3 7 31 127 8191 ]
+
+Former LinkedList:[ ]
+Position of adding:0
+LinkedList with newly added elements:[ 2 3 -5 6 -3 4 5 -3 -2 1 -66 ]
+
+Former LinkedList:[ ]
+Position of adding:0
+LinkedList with newly added elements:[ 3 7 31 127 8191 ]
+
+Former LinkedList:[ 2 3 -5 6 -3 4 5 -3 -2 1 -66 ]
+Position of deletion:3
+LinkedList without 3th element:[ 2 3 -5 -3 4 5 -3 -2 1 -66 ]
+
+Former LinkedList:[ 3 7 31 127 8191 ]
+Position of deletion:3
+LinkedList without 3th element:[ 3 7 31 8191 ]
+
+Former LinkedList:[ ]
+Position of adding:0
+LinkedList with newly added elements:[ 2 3 -5 6 -3 4 5 -3 -2 1 -66 ]
+
+Former LinkedList:[ ]
+Position of adding:0
+LinkedList with newly added elements:[ 3 7 31 127 8191 131071 ]
+
+Former LinkedList:[ 2 3 -5 6 -3 4 5 -3 -2 1 -66 ]
+Position of deletion:5
+LinkedList without 5th element:[ 2 3 -5 6 -3 5 -3 -2 1 -66 ]
+
+Former LinkedList:[ 3 7 31 127 8191 131071 ]
+Position of deletion:5
+LinkedList without 5th element:[ 3 7 31 127 8191 ]
+
+Former LinkedList:[ 2 3 -5 6 -3 5 -3 -2 1 -66 ]
+Position of deletion:2
+LinkedList without 2th element:[ 2 3 6 -3 5 -3 -2 1 -66 ]
+
+Former LinkedList:[ 3 7 31 127 8191 ]
+Position of deletion:2
+LinkedList without 2th element:[ 3 7 127 8191 ]
+
+Former LinkedList:[ ]
+Position of adding:0
+LinkedList with newly added elements:[ 2 3 -5 6 -3 4 5 -3 -2 1 -66 ]
+
+Former LinkedList:[ ]
+Position of adding:0
+LinkedList with newly added elements:[ 3 7 31 127 8191 131071 524287 ]
+
+Former LinkedList:[ 2 3 -5 6 -3 4 5 -3 -2 1 -66 ]
+Position of deletion:3
+LinkedList without 3th element:[ 2 3 -5 -3 4 5 -3 -2 1 -66 ]
+
+Former LinkedList:[ 3 7 31 127 8191 131071 524287 ]
+Position of deletion:3
+LinkedList without 3th element:[ 3 7 31 8191 131071 524287 ]
+
+Former LinkedList:[ 2 3 -5 -3 4 5 -3 -2 1 -66 ]
+Position of deletion:3
+LinkedList without 3th element:[ 2 3 -5 4 5 -3 -2 1 -66 ]
+
+Former LinkedList:[ 3 7 31 8191 131071 524287 ]
+Position of deletion:3
+LinkedList without 3th element:[ 3 7 31 131071 524287 ]
+
+Former LinkedList:[ ]
+Position of adding:0
+LinkedList with newly added elements:[ 2 3 -5 6 -3 4 5 -3 -2 1 -66 ]
+
+Former LinkedList:[ ]
+Position of adding:0
+LinkedList with newly added elements:[ 3 7 31 127 8191 131071 524287 2147483647 2305843009213693951 618970019642690137449562111 162259276829213363391578010288127 ]
+
+Former LinkedList:[ 2 3 -5 6 -3 4 5 -3 -2 1 -66 ]
+Range of removing:[0, 8]
+LinkedList with deleted elements:[ 1 -66 ]
+
+Former LinkedList:[ 3 7 31 127 8191 131071 524287 2147483647 2305843009213693951 618970019642690137449562111 162259276829213363391578010288127 ]
+Range of removing:[0, 8]
+LinkedList with deleted elements:[ 618970019642690137449562111 162259276829213363391578010288127 ]
+
+Former LinkedList:[ ]
+Position of adding:0
+LinkedList with newly added elements:[ 2 3 -5 6 -3 4 5 -3 -2 1 -66 ]
+
+Former LinkedList:[ ]
+Position of adding:0
+LinkedList with newly added elements:[ 3 7 31 127 8191 131071 524287 2147483647 2305843009213693951 ]
+
+Former LinkedList:[ 2 3 -5 6 -3 4 5 -3 -2 1 -66 ]
+LinkedList after reversing alternations:[ 2 4 -3 6 -5 3 -3 5 -66 1 -2 ]
+
+Former LinkedList:[ 3 7 31 127 8191 131071 524287 2147483647 2305843009213693951 ]
+LinkedList after reversing alternations:[ 3 7 31 127 8191 131071 524287 2147483647 2305843009213693951 ]
+
+Former LinkedList:[ 2 4 -3 6 -5 3 -3 5 -66 1 -2 ]
+Range of removing:[2, 8]
+LinkedList with deleted elements:[ 2 4 1 -2 ]
+
+Former LinkedList:[ 3 7 31 127 8191 131071 524287 2147483647 2305843009213693951 ]
+Range of removing:[2, 8]
+LinkedList with deleted elements:[ 3 7 ]
+
+Former LinkedList:[ ]
+Position of adding:0
+LinkedList with newly added elements:[ 2 3 -5 6 -3 4 5 -3 -2 1 -66 ]
+
+Former LinkedList:[ ]
+Position of adding:0
+LinkedList with newly added elements:[ 3 7 31 127 8191 131071 524287 2147483647 2305843009213693951 ]
+
+Former LinkedList:[ 2 3 -5 6 -3 4 5 -3 -2 1 -66 ]
+Range of removing:[2, 8]
+LinkedList with deleted elements:[ 2 3 1 -66 ]
+
+Former LinkedList:[ 3 7 31 127 8191 131071 524287 2147483647 2305843009213693951 ]
+Range of removing:[2, 8]
+LinkedList with deleted elements:[ 3 7 ]
+
+Former LinkedList:[ ]
+Position of adding:0
+LinkedList with newly added elements:[ 2 3 -5 6 -3 4 5 -3 -2 1 -66 ]
+
+Former LinkedList:[ ]
+Position of adding:0
+LinkedList with newly added elements:[ 3 7 31 127 8191 131071 524287 2147483647 2305843009213693951 ]
+
+Former LinkedList:[ 2 3 -5 6 -3 4 5 -3 -2 1 -66 ]
+Range of removing:[3, 9]
+LinkedList with deleted elements:[ 2 3 -5 -66 ]
+
