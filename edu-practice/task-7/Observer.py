@@ -17,8 +17,7 @@ class Event:
         for l in Observer.listeners:
             if key == l:
                 if result is not None:
-                    Observer.listeners[l](former, pos, result)
+                    Observer.listeners[l](key, former, pos, result)
                 else:
-                    Observer.listeners[l](former, pos)
+                    Observer.listeners[l](key, former, pos)
                 break
-

@@ -30,9 +30,12 @@ def threadsOperator(func, contexts, args):
 def menu():
     c1 = Context()
     c2 = Context()
-    Observer.attach('add', FileLogger.logAdd)
-    Observer.attach('remove', FileLogger.logRemove)
-    Observer.attach('method', FileLogger.logMethodExecution)
+    # Observer.attach('add', FileLogger.logAdd)
+    # Observer.attach('remove', FileLogger.logRemove)
+    # Observer.attach('method', FileLogger.logMethodExecution)
+    Observer.attach('add', FileLogger.log)
+    Observer.attach('remove', FileLogger.log)
+    Observer.attach('method', FileLogger.log)
 
     print('-'*60)
     print('Welcome to pattern \'Strategy\' menu!')
