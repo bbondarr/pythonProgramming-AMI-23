@@ -74,7 +74,7 @@ class Validation:
                 if val > date.today():
                     raise ValueError('Bad Date value')
             except ValueError:
-                raise ValueError('Value must be Date type')
+                raise ValueError('Bad Date value')
             func(_self, val)
 
         return inner

@@ -11,7 +11,7 @@ from apiFeatures import sort, filter, paginate
 productSchema = ProductSchema()
 productsSchema = ProductSchema(many=True)
 
-@app.route('/product', methods=['GET'])
+@app.route('/api/products', methods=['GET'])
 def getAll():
     try:
         sortBy = request.args.get('sort', default=None, type=str)
@@ -38,7 +38,7 @@ def getAll():
         return jsonify({'status': 'fail'}, {'message': str(e)}), 404
 
 
-@app.route('/product', methods=['POST'])
+@app.route('/api/products', methods=['POST'])
 def post():
     try:
         newProduct = Product(**
@@ -49,12 +49,12 @@ def post():
 
         result = productSchema.dump(newProduct)
         return jsonify({'status': 'success'}, 
-                        {'new product': result}), 201
+                       {'new product': result}), 201
     except Exception as e:
         return jsonify({'status': 'fail'}, {'message': str(e)}), 404
 
 
-@app.route('/product/<id>', methods=['GET'])
+@app.route('/api/products/<id>', methods=['GET'])
 def get(id):
     try:
         v.validateID(id)
@@ -63,12 +63,12 @@ def get(id):
 
         result = productSchema.dump(product)
         return jsonify({'status': 'success'}, 
-                        {'product': result}), 200
+                       {'product': result}), 200
     except Exception as e:
         return jsonify({'status': 'fail'}, {'message': str(e)}), 404
 
 
-@app.route('/product/<id>', methods=['DELETE'])
+@app.route('/api/products/<id>', methods=['DELETE'])
 def delete(id):
     try:
         v.validateID(id)
@@ -80,12 +80,12 @@ def delete(id):
 
         result = productSchema.dump(product)
         return jsonify({'status': 'success'}, 
-                        {'deleted product': result}), 204
+                       {'deleted product': result}), 204
     except Exception as e:
         return jsonify({'status': 'fail'}, {'message': str(e)}), 404
 
 
-@app.route('/product/<id>', methods=['PATCH'])
+@app.route('/api/products/<id>', methods=['PATCH'])
 def patch(id):
     try:
         v.validateID(id)
@@ -106,6 +106,6 @@ def patch(id):
         result = productSchema.dump(product)
         db.session.commit()
         return jsonify({'status': 'success'}, 
-                        {'patched product': result}), 204
+                       {'patched product': result}), 204
     except Exception as e:
         return jsonify({'status': 'fail'}, {'message': str(e)}), 404
