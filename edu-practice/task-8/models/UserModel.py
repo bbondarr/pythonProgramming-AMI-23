@@ -39,10 +39,12 @@ class User(UserMixin, db.Model):
         self.lastName = val
 
     @v.validateStr
+    @v.validateMail
     def setEmail(self, val):
         self.email = val
 
     @v.validateStr
+    @v.validatePassword
     def setPassword(self, val):
         self.password = val
 
