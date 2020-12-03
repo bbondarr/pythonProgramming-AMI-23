@@ -21,12 +21,15 @@ class Order(UserMixin, db.Model):
         self.setAmount(amount)
         self.setDate()
 
+    @v.validateID
     def setUserID(self, val):
         self.userID = val
 
+    @v.validateID
     def setProductID(self, val):
         self.productID = val
 
+    @v.validateQuantity
     def setAmount(self, val):
         self.amount = val
 
