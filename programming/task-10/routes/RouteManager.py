@@ -3,9 +3,17 @@ from flask import request
 from apiFeatures import sort, filter, paginate
 from Validation import Validation as v
 
-class RouteTemplate:
-    @staticmethod
-    def getAll(query, schema, sortBy, filterBy, limit, page):
+
+class RouteManager:
+    def __init__(self, model, schema, schemaMany):
+        self.model = model
+        self.schema = schema
+        self.schemaMany = schemaMany
+
+        
+    def getAll(self, sortBy, filterBy, limit, page, query=None):
+        if not query:
+            query = self.model.query
         # Handling sort query
         query = sort(query, sortBy)
 
@@ -15,38 +23,36 @@ class RouteTemplate:
         # Handling pagination
         units = paginate(query, page, limit)
 
-        result = schema.dump(units)
+        result = self.schemaMany.dump(units)
         return result
 
 
-    @staticmethod
-    def getSingle(id, model, schema):
+    def getSingle(self, id):
         v.validateID(id)
-        unit = model.query.filter(model.id == id).first()
+        unit = self.model.query.filter(self.model.id == id).first()
         v.validateNotNoneObject(unit)
 
-        result = schema.dump(unit)
+        result = self.schema.dump(unit)
         return result
 
 
     @staticmethod
-    def deleteSingle(id, model, schema):
+    def deleteSingle(self, id):
         v.validateID(id)
-        unit = model.query.filter(model.id == id).first()
+        unit = self.model.query.filter(self.model.id == id).first()
         v.validateNotNoneObject(unit)
         return unit
 
 
-    @staticmethod
-    def patchSingle(id, model, schema):
+    def patchSingle(self, id):
         v.validateID(id)
-        unit = model.query.filter(model.id == id).first()
+        unit = self.model.query.filter(self.model.id == id).first()
         v.validateNotNoneObject(unit)
 
         field = None
         attr = None
 
-        for attr in model.attributes():
+        for attr in self.model.attributes():
             try:
                 field = request.json[attr]
                 break
@@ -54,5 +60,5 @@ class RouteTemplate:
 
         getattr(unit, 'set'+attr[0].upper()+attr[1:])(field)
 
-        result = schema.dump(unit)
+        result = self.schema.dump(unit)
         return result

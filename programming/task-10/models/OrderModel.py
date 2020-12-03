@@ -20,8 +20,6 @@ class Order(UserMixin, db.Model):
         self.setProductID(productID)
         self.setAmount(amount)
         self.setDate()
-        print(self)
-        self.product.quantity -= amount
 
     def setUserID(self, val):
         self.userID = val

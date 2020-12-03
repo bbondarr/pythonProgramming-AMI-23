@@ -18,28 +18,28 @@ class User(UserMixin, db.Model):
     lastName = db.Column('lastName', db.String, nullable=False)
     email = db.Column('email', db.String, nullable=False, unique=True)
     password = db.Column('password', db.String, nullable=False)
-    role = db.Column('role', db.Enum('admin', 'user'), default='admin', nullable=False)
+    role = db.Column('role', db.Enum('admin', 'user'), default='user', nullable=False)
 
     products = db.relationship('Product', backref='user')
     orders = db.relationship('Order', backref='user')
 
 
-    def __init__(self, firstName, lastName, email, password, role='admin'):
+    def __init__(self, firstName, lastName, email, password, role='user'):
         self.setFirstName(firstName)
         self.setLastName(lastName)
         self.setEmail(email)
         self.setPassword(password)
         self.setRole(role)
 
-@staticmethod
-def attributes():
-    return [a for a in dir(User) 
-            if (not a.startswith('get') 
-            and not a.startswith('set') 
-            and not a.startswith('_') 
-            and not a.startswith('is')
-            and a != 'query' and a != 'metadata' 
-            and not callable(getattr(User, a)))]
+    @staticmethod
+    def attributes():
+        return [a for a in dir(User) 
+                if (not a.startswith('get') 
+                and not a.startswith('set') 
+                and not a.startswith('_') 
+                and not a.startswith('is')
+                and a != 'query' and a != 'metadata' 
+                and not callable(getattr(User, a)))]
 
     @v.validateTitle
     def setFirstName(self, val):
@@ -61,4 +61,3 @@ def attributes():
 
     def setRole(self, val):
         self.role = val
-

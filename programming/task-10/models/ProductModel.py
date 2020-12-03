@@ -59,7 +59,7 @@ class Product(db.Model):
         self.price = val
         self.updatedAt = date.today()
 
-    @v.validateInt
+    @v.validateQuantity
     def setQuantity(self, val): 
         self.quantity = val
         self.updatedAt = date.today()

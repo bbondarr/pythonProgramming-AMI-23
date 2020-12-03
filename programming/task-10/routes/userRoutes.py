@@ -7,7 +7,7 @@ from passlib.hash import pbkdf2_sha256
 from app import app, db, ma
 from models.UserModel import User
 from schemas.UserSchema import UserSchema
-from routes.RouteTemplates import RouteTemplate
+from routes.RouteManager import RouteManager
 from Validation import Validation as v
 
 
@@ -16,6 +16,8 @@ login.init_app(app)
 
 userSchema = UserSchema()
 usersSchema = UserSchema(many=True)
+
+userRouteManager = RouteManager(User, userSchema, usersSchema)
 
 # ==================================REGISTER ROUTE==========================================
 @app.route('/api/users', methods=['POST'])
@@ -84,8 +86,7 @@ def getAllUsers():
             limit = request.args.get('limit', default=None, type=int)
             page = request.args.get('page', default=None, type=int)
 
-            users = RouteTemplate.getAll(User.query, usersSchema, 
-                                        sortBy, filterBy, limit, page)
+            users = userRouteManager.getAll(sortBy, filterBy, limit, page)
             return jsonify({'status': 'success'},
                             {'count': len(users)}, 
                             {'users': users}), 200
@@ -103,7 +104,7 @@ def getAllUsers():
 def getUser(id):
     if current_user.role == 'admin':
         try:
-            result = RouteTemplate.getSingle(id, User, userSchema)
+            result = userRouteManager.getSingle(id)
             return jsonify({'status': 'success'}, 
                         {'product': result}), 200
         except Exception as e:
@@ -117,7 +118,7 @@ def getUser(id):
 def deleteUser(id):
     if current_user.role == 'admin':
         try:
-            user = RouteTemplate.deleteSingle(id, User, userSchema)
+            user = userRouteManager.deleteSingle(id)
             db.session.delete(user)
             db.session.commit()
             return jsonify({'status': 'success'}), 204
@@ -133,7 +134,7 @@ def deleteUser(id):
 def patchUser(id):
     if current_user.role == 'admin':
         try:
-            result = RouteTemplate.patchSingle(id, User, userSchema)
+            result = userRouteManager.patchSingle(id)
             db.session.commit()
             return jsonify({'status': 'success'}), 204
         except Exception as e:

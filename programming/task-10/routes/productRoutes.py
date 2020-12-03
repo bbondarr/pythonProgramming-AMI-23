@@ -6,11 +6,13 @@ from flask_login import login_required, current_user
 from app import app, db, ma
 from models.ProductModel import Product
 from schemas.ProductSchema import ProductSchema
-from routes.RouteTemplates import RouteTemplate
+from routes.RouteManager import RouteManager
 from Validation import Validation as v
 
 productSchema = ProductSchema()
 productsSchema = ProductSchema(many=True)
+
+productRouteManager = RouteManager(Product, productSchema, productsSchema)
 
 
 # SQLALCHEMY DOESN'T ALLOW ME TO MAKE A DECORATOR ON A ROUTE ==============
@@ -25,8 +27,7 @@ def getAllProducts():
         limit = request.args.get('limit', default=None, type=int)
         page = request.args.get('page', default=None, type=int)
 
-        products = RouteTemplate.getAll(Product.query, productsSchema, 
-                                        sortBy, filterBy, limit, page)
+        products = productRouteManager.getAll(sortBy, filterBy, limit, page)
         return jsonify({'status': 'success'},
                         {'count': len(products)}, 
                         {'products': products}), 200
@@ -60,7 +61,7 @@ def postProduct():
 @login_required
 def getProduct(id):
     try:
-        result = RouteTemplate.getSingle(id, Product, productSchema)
+        result = productRouteManager.getSingle(id)
         return jsonify({'status': 'success'}, 
                        {'product': result}), 200
     except Exception as e:
@@ -72,7 +73,7 @@ def getProduct(id):
 def deleteProduct(id):
     if current_user.role == 'admin':
         try:
-            product = RouteTemplate.deleteSingle(id, Product, productSchema)
+            product = productRouteManager.deleteSingle(id)
             db.session.delete(product)
             db.session.commit()
             return jsonify({'status': 'success'}), 204
@@ -88,7 +89,7 @@ def deleteProduct(id):
 def patchProduct(id):
     if current_user.role == 'admin':
         try:
-            result = RouteTemplate.patchSingle(id, Product, productSchema)
+            result = productRouteManager.patchSingle(id)
             db.session.commit()
             return jsonify({'status': 'success'}), 204
         except Exception as e:

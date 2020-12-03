@@ -18,13 +18,15 @@ class Validation:
             raise ValueError('ID must be a postitve integer')   
 
     @staticmethod
-    def validateInt(func):
+    def validateQuantity(func):
         def inner (_self, val):
             try:
-                val = round(int(val), 2)
+                val = int(val)
+                if val < 0:
+                 raise ValueError('Quantity must be integer above zero')
                 func(_self, val)
             except ValueError: 
-                raise ValueError('Value must be integer type')            
+                raise ValueError('Quantity must be integer above zero')            
 
         return inner         
 
