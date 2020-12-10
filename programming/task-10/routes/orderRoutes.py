@@ -16,8 +16,6 @@ ordersSchema = OrderSchema(many=True)
 
 orderRouteManager = RouteManager(Order, orderSchema, ordersSchema)
 
-# SQLALCHEMY DOESN'T ALLOW ME TO MAKE A DECORATOR ON A ROUTE ==============
-# SO THAT'S WHY THIS IF ROLE == ADMIN IS EVERYWHERE =======================
 
 @app.route('/api/orders', methods=['POST'])
 @login_required
@@ -28,8 +26,14 @@ def makeOrder():
             if a != 'id'and a != 'date' and a != 'userID'}
         )
         order.setUserID(current_user.id)
+
         product = Product.query.filter(Product.id == order.productID).first()
-        product.setQuantity(product.quantity - order.amount)
+        if not product:
+            return jsonify({'status': 'fail'}, {'message': 'Bad product ID'}), 404
+        try:
+            product.setQuantity(product.quantity - order.amount)
+        except ValueError: 
+            raise ValueError(f'Not enough products in the shop ({product.quantity} remaining)')
         
         db.session.add(order)
         db.session.commit()

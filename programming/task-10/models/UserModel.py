@@ -59,5 +59,6 @@ class User(UserMixin, db.Model):
     def setPassword(self, val):
         self.password = val
 
+    @v.validateRole
     def setRole(self, val):
         self.role = val

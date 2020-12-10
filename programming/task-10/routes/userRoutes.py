@@ -19,6 +19,7 @@ usersSchema = UserSchema(many=True)
 
 userRouteManager = RouteManager(User, userSchema, usersSchema)
 
+
 # ==================================REGISTER ROUTE==========================================
 @app.route('/api/users', methods=['POST'])
 def registerUser():
@@ -54,12 +55,13 @@ def loginUser():
     try:
         email = request.json['email']
         password = request.json['password']
-
+        
         user = User.query.filter(User.email == email).first()
-        validPassword = pbkdf2_sha256.verify(password, user.password)
-        if user and validPassword:
-            login_user(user)
-            return jsonify({'status': 'success'}), 204
+        if user: 
+            validPassword = pbkdf2_sha256.verify(password, user.password)
+            if validPassword:
+                login_user(user)
+                return jsonify({'status': 'success'}), 204
 
     except Exception as e:
         return jsonify({'status': 'fail'}, {'message': str(e)}), 404

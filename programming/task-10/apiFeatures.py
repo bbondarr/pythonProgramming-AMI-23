@@ -3,11 +3,12 @@ from sqlalchemy import desc, cast
 from app import db
 from models.ProductModel import Product
 
+
 def sort(query, sortBy):
     if sortBy:
         if sortBy in Product.attributes(): 
             query = query.order_by(sortBy)
-            
+
         if (sortBy[0] == '-' and 
             sortBy[1:] in Product.attributes()):
             query = query.order_by(desc(sortBy[1:]))

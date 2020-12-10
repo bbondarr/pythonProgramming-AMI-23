@@ -27,8 +27,8 @@ class RouteManager:
         return result
 
 
+    @v.validateID
     def getSingle(self, id):
-        v.validateID(id)
         unit = self.model.query.filter(self.model.id == id).first()
         v.validateNotNoneObject(unit)
 
@@ -36,16 +36,15 @@ class RouteManager:
         return result
 
 
-    @staticmethod
+    @v.validateID
     def deleteSingle(self, id):
-        v.validateID(id)
         unit = self.model.query.filter(self.model.id == id).first()
         v.validateNotNoneObject(unit)
         return unit
 
 
+    @v.validateID
     def patchSingle(self, id):
-        v.validateID(id)
         unit = self.model.query.filter(self.model.id == id).first()
         v.validateNotNoneObject(unit)
 

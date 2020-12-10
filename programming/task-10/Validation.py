@@ -9,13 +9,17 @@ class Validation:
         pass
 
     @staticmethod
-    def validateID(val):
-        try:
-            val = int(val)
-            if val <= 0:
-                 raise ValueError('ID must be a postitve integer')  
-        except ValueError: 
-            raise ValueError('ID must be a postitve integer')   
+    def validateID(func):
+        def inner (_self, val):
+            try:
+                val = int(val)
+                if val <= 0:
+                    raise ValueError('ID must be a postitve integer')
+                return func(_self, val)  
+            except ValueError: 
+                raise ValueError('ID must be a postitve integer')   
+
+        return inner
 
     @staticmethod
     def validateQuantity(func):
@@ -23,8 +27,8 @@ class Validation:
             try:
                 val = int(val)
                 if val < 0:
-                 raise ValueError('Quantity must be integer above zero')
-                func(_self, val)
+                    raise ValueError('Quantity must be integer above zero')
+                return func(_self, val)
             except ValueError: 
                 raise ValueError('Quantity must be integer above zero')            
 
@@ -75,6 +79,15 @@ class Validation:
             regexSrch = re.search(r'^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&\'\(\)\*\+,;=.]+$', val)
             if regexSrch is None: 
                 raise ValueError('Bad URL value')            
+            func(_self, val)
+
+        return inner
+
+    @staticmethod
+    def validateRole(func):
+        def inner (_self, val):
+            if val != 'user' and val != 'admin':
+                raise ValueError('Bad Role value')            
             func(_self, val)
 
         return inner

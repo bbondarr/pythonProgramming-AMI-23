@@ -16,7 +16,8 @@ class Order(UserMixin, db.Model):
 
 
     def __init__(self, productID, amount, userID=None):
-        self.setUserID(userID)
+        if userID:
+            self.setUserID(userID)
         self.setProductID(productID)
         self.setAmount(amount)
         self.setDate()
