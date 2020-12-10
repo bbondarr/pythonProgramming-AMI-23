@@ -11,7 +11,7 @@ from config import USERNAME, PASSWORD, SECRET_KEY
 app = Flask(__name__)
 
 # Creating and setting up database
-app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{USERNAME}:{PASSWORD}@localhost:5432/products_test'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{USERNAME}:{PASSWORD}@localhost:5432/products_auth'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = SECRET_KEY
 
