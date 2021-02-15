@@ -123,8 +123,23 @@ namespace edu_practice_1
         {
             StreamReader sr = new StreamReader(fn);
             string json = sr.ReadToEnd();
-            var list = JsonConvert.DeserializeObject<List<Product>>(json);
-            _products = list;
+            var list = JsonConvert.DeserializeObject<List<Dictionary<String, String>>>(json);
+            foreach (var dict in list)
+            {
+                try
+                {
+                    Product p = JsonConvert.DeserializeObject<Product>(JsonConvert.SerializeObject(dict));
+                    _products.Add(p);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Exception: {e.Message}");
+                    if (e.InnerException != null)
+                    {
+                        Console.WriteLine($"Inner Exception: {e.InnerException.Message}");
+                    }
+                }
+            }
             sr.Close();
         }
 

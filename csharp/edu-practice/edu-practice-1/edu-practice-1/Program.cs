@@ -19,7 +19,11 @@ namespace edu_practice_1
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e.Message);
+                    Console.WriteLine($"Exception: {e.Message}");
+                    if (e.InnerException != null)
+                    {
+                        Console.WriteLine($"Inner Exception: {e.InnerException.Message}");
+                    }
                 }
             }
 

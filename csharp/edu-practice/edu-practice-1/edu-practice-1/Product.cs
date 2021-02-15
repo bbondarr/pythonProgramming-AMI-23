@@ -9,6 +9,7 @@ namespace edu_practice_1
         private string _title, _description, _imageUrl;
         private double _price;
         private DateTime _createdAt, _updatedAt;
+        
 
         public Product(string title, string description, string imageUrl,
                        double price, DateTime createdAt, DateTime updatedAt)
