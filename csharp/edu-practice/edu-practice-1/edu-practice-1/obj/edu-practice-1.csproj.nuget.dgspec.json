@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/bondarth/Desktop/fpmi/2 kurs/c# programming/edu-practice-1/edu-practice-1/edu-practice-1.csproj": {}
+    "/Users/bondarth/Desktop/fpmi/2 kurs/python programming/pythonProgramming-AMI-23/csharp/edu-practice/edu-practice-1/edu-practice-1/edu-practice-1.csproj": {}
   },
   "projects": {
-    "/Users/bondarth/Desktop/fpmi/2 kurs/c# programming/edu-practice-1/edu-practice-1/edu-practice-1.csproj": {
+    "/Users/bondarth/Desktop/fpmi/2 kurs/python programming/pythonProgramming-AMI-23/csharp/edu-practice/edu-practice-1/edu-practice-1/edu-practice-1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/bondarth/Desktop/fpmi/2 kurs/c# programming/edu-practice-1/edu-practice-1/edu-practice-1.csproj",
+        "projectUniqueName": "/Users/bondarth/Desktop/fpmi/2 kurs/python programming/pythonProgramming-AMI-23/csharp/edu-practice/edu-practice-1/edu-practice-1/edu-practice-1.csproj",
         "projectName": "edu-practice-1",
-        "projectPath": "/Users/bondarth/Desktop/fpmi/2 kurs/c# programming/edu-practice-1/edu-practice-1/edu-practice-1.csproj",
+        "projectPath": "/Users/bondarth/Desktop/fpmi/2 kurs/python programming/pythonProgramming-AMI-23/csharp/edu-practice/edu-practice-1/edu-practice-1/edu-practice-1.csproj",
         "packagesPath": "/Users/bondarth/.nuget/packages/",
-        "outputPath": "/Users/bondarth/Desktop/fpmi/2 kurs/c# programming/edu-practice-1/edu-practice-1/obj/",
+        "outputPath": "/Users/bondarth/Desktop/fpmi/2 kurs/python programming/pythonProgramming-AMI-23/csharp/edu-practice/edu-practice-1/edu-practice-1/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/bondarth/.nuget/NuGet/NuGet.Config"

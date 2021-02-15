@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace edu_practice_1
 {
     class Menu
     {
         private static ProductContainer pc = new ProductContainer();
+        private static string projectPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
         static void Main()
         {
             Console.WriteLine("WELCOME TO PRODUCTS MENU");
@@ -78,7 +80,7 @@ namespace edu_practice_1
         static void ReadFromFileMenu()
         {
             Console.WriteLine("Enter filename: ");
-            string fn = Console.ReadLine();
+            string fn = $"{projectPath}/{Console.ReadLine()}";
             pc.Fn = fn;
             pc.ReadFromFile(fn);
             Console.WriteLine("Collection successfully read!");
