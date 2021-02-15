@@ -1,0 +1,56 @@
+[
+  {
+    "Title": "Milk",
+    "Description": "🥛",
+    "ImageUrl": "molokiya.com.ua",
+    "CreatedAt": "2015-12-12T00:00:00",
+    "UpdatedAt": "2020-10-21T00:00:00",
+    "Price": 41.2,
+    "ID": "0bb73154-2e71-454b-b003-2a07f3bbf44f"
+  },
+  {
+    "Title": "White bread",
+    "Description": "🍞",
+    "ImageUrl": "www.url.com.ua",
+    "CreatedAt": "2019-02-02T00:00:00",
+    "UpdatedAt": "2020-11-04T00:00:00",
+    "Price": 17.0,
+    "ID": "0bcc4bfb-4072-4e62-a14f-3afb77331fe4"
+  },
+  {
+    "Title": "Chocolate",
+    "Description": "🍫",
+    "ImageUrl": "www.google.com.sw",
+    "CreatedAt": "2019-09-05T00:00:00",
+    "UpdatedAt": "2019-09-05T00:00:00",
+    "Price": 55.0,
+    "ID": "211df3db-cebd-4ef1-a56b-01236be86a4c"
+  },
+  {
+    "Title": "Lwiwske Eksportowe",
+    "Description": "🍺",
+    "ImageUrl": "www.pryvatna.ua",
+    "CreatedAt": "2020-09-12T00:00:00",
+    "UpdatedAt": "2020-10-21T00:00:00",
+    "Price": 45.5,
+    "ID": "c8d2dcf5-53ae-4208-8a70-c78be53cb00d"
+  },
+  {
+    "Title": "Corn",
+    "Description": "🌽",
+    "ImageUrl": "www.url",
+    "CreatedAt": "2020-02-02T00:00:00",
+    "UpdatedAt": "2020-11-04T00:00:00",
+    "Price": 30.88,
+    "ID": "7cf99942-33aa-4dcc-a223-c868791975c2"
+  },
+  {
+    "Title": "Carrot",
+    "Description": "🥕",
+    "ImageUrl": "www.farm.lv",
+    "CreatedAt": "2021-01-02T00:00:00",
+    "UpdatedAt": "2021-02-02T00:00:00",
+    "Price": 12.0,
+    "ID": "26087b71-ac79-4a4b-8ca4-e27cdfc49c85"
+  }
+]

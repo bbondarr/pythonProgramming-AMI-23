@@ -1,0 +1,47 @@
+[
+  {
+    "Title": "Milk",
+    "Description": "mleko",
+    "ImageUrl": "molokiya.com.ua",
+    "CreatedAt": "2015-12-12T00:00:00",
+    "UpdatedAt": "2020-10-21T00:00:00",
+    "Price": 37.75,
+    "ID": "a5e799b0-52a9-4fc9-ad9c-b0a74e1105b5"
+  },
+  {
+    "Title": "TEST",
+    "Description": "DESCRIPTION",
+    "ImageUrl": "www.url.com.ua",
+    "CreatedAt": "2019-02-02T00:00:00",
+    "UpdatedAt": "2020-11-04T00:00:00",
+    "Price": 1.0,
+    "ID": "f9ed5b56-2adc-4932-a736-387fea533839"
+  },
+  {
+    "Title": "Chocolate",
+    "Description": "W kraine zapomnienia",
+    "ImageUrl": "www.google.com.sw",
+    "CreatedAt": "2019-09-05T00:00:00",
+    "UpdatedAt": "2019-09-05T00:00:00",
+    "Price": 55.0,
+    "ID": "36fa77bc-b6e9-4fe1-93d7-a5d9fb4003f2"
+  },
+  {
+    "Title": "Lwiwske Eksportowe",
+    "Description": "nice beer at reasonable price",
+    "ImageUrl": "www.pryvatna.ua",
+    "CreatedAt": "2020-09-12T00:00:00",
+    "UpdatedAt": "2020-10-21T00:00:00",
+    "Price": 45.5,
+    "ID": "3567a024-0b72-4aae-9cb4-5ae91d59272c"
+  },
+  {
+    "Title": "tttttttttttt",
+    "Description": "dwaae dcaea",
+    "ImageUrl": "www.url",
+    "CreatedAt": "2020-02-02T00:00:00",
+    "UpdatedAt": "2020-11-04T00:00:00",
+    "Price": 4909.0,
+    "ID": "49fd9dc7-55d0-417f-b9ed-e8091fc28c2a"
+  }
+]

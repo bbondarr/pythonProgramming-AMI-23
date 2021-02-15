@@ -1,0 +1,56 @@
+[
+  {
+    "Title": "White bread",
+    "Description": "🍞",
+    "ImageUrl": "www.url.com.ua",
+    "CreatedAt": "2019-02-02T00:00:00",
+    "UpdatedAt": "2020-11-04T00:00:00",
+    "Price": 17.0,
+    "ID": "a2598f90-276f-4893-8525-ff9df7c32523"
+  },
+  {
+    "Title": "Corn",
+    "Description": "🌽",
+    "ImageUrl": "www.url",
+    "CreatedAt": "2020-02-02T00:00:00",
+    "UpdatedAt": "2020-11-04T00:00:00",
+    "Price": 30.88,
+    "ID": "4bd05860-8391-46ad-b3a3-af10ae9e6c0e"
+  },
+  {
+    "Title": "Polyana Kwasova",
+    "Description": "💧",
+    "ImageUrl": "www.dzherelo.com",
+    "CreatedAt": "2021-01-01T00:00:00",
+    "UpdatedAt": "2021-01-01T00:00:00",
+    "Price": 34.0,
+    "ID": "a4b00de3-12fd-42f2-bea5-b7964508c9d2"
+  },
+  {
+    "Title": "Milk",
+    "Description": "🥛",
+    "ImageUrl": "molokiya.com.ua",
+    "CreatedAt": "2015-12-12T00:00:00",
+    "UpdatedAt": "2020-10-21T00:00:00",
+    "Price": 37.75,
+    "ID": "064448d2-9ecf-4f41-8976-6418ab456347"
+  },
+  {
+    "Title": "Lwiwske Eksportowe",
+    "Description": "🍺",
+    "ImageUrl": "www.pryvatna.ua",
+    "CreatedAt": "2020-09-12T00:00:00",
+    "UpdatedAt": "2020-10-21T00:00:00",
+    "Price": 45.5,
+    "ID": "319fa242-38dc-4ab8-9e90-14db207c4128"
+  },
+  {
+    "Title": "Chocolate",
+    "Description": "🍫",
+    "ImageUrl": "www.google.com.sw",
+    "CreatedAt": "2019-09-05T00:00:00",
+    "UpdatedAt": "2019-09-05T00:00:00",
+    "Price": 55.0,
+    "ID": "ede635e5-52a5-4ef3-960b-ebf267b9bea8"
+  }
+]

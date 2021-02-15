@@ -1,0 +1,17 @@
+/Users/bondarth/Desktop/fpmi/2 kurs/c# programming/edu-practice-1/edu-practice-1/bin/Debug/net5.0/edu-practice-1.deps.json
+/Users/bondarth/Desktop/fpmi/2 kurs/c# programming/edu-practice-1/edu-practice-1/bin/Debug/net5.0/edu-practice-1.runtimeconfig.json
+/Users/bondarth/Desktop/fpmi/2 kurs/c# programming/edu-practice-1/edu-practice-1/bin/Debug/net5.0/edu-practice-1.runtimeconfig.dev.json
+/Users/bondarth/Desktop/fpmi/2 kurs/c# programming/edu-practice-1/edu-practice-1/bin/Debug/net5.0/edu-practice-1.dll
+/Users/bondarth/Desktop/fpmi/2 kurs/c# programming/edu-practice-1/edu-practice-1/bin/Debug/net5.0/ref/edu-practice-1.dll
+/Users/bondarth/Desktop/fpmi/2 kurs/c# programming/edu-practice-1/edu-practice-1/bin/Debug/net5.0/edu-practice-1.pdb
+/Users/bondarth/Desktop/fpmi/2 kurs/c# programming/edu-practice-1/edu-practice-1/obj/Debug/net5.0/edu-practice-1.csprojAssemblyReference.cache
+/Users/bondarth/Desktop/fpmi/2 kurs/c# programming/edu-practice-1/edu-practice-1/obj/Debug/net5.0/edu-practice-1.GeneratedMSBuildEditorConfig.editorconfig
+/Users/bondarth/Desktop/fpmi/2 kurs/c# programming/edu-practice-1/edu-practice-1/obj/Debug/net5.0/edu-practice-1.AssemblyInfoInputs.cache
+/Users/bondarth/Desktop/fpmi/2 kurs/c# programming/edu-practice-1/edu-practice-1/obj/Debug/net5.0/edu-practice-1.AssemblyInfo.cs
+/Users/bondarth/Desktop/fpmi/2 kurs/c# programming/edu-practice-1/edu-practice-1/obj/Debug/net5.0/edu-practice-1.csproj.CoreCompileInputs.cache
+/Users/bondarth/Desktop/fpmi/2 kurs/c# programming/edu-practice-1/edu-practice-1/obj/Debug/net5.0/edu-practice-1.dll
+/Users/bondarth/Desktop/fpmi/2 kurs/c# programming/edu-practice-1/edu-practice-1/obj/Debug/net5.0/ref/edu-practice-1.dll
+/Users/bondarth/Desktop/fpmi/2 kurs/c# programming/edu-practice-1/edu-practice-1/obj/Debug/net5.0/edu-practice-1.pdb
+/Users/bondarth/Desktop/fpmi/2 kurs/c# programming/edu-practice-1/edu-practice-1/obj/Debug/net5.0/edu-practice-1.genruntimeconfig.cache
+/Users/bondarth/Desktop/fpmi/2 kurs/c# programming/edu-practice-1/edu-practice-1/bin/Debug/net5.0/Newtonsoft.Json.dll
+/Users/bondarth/Desktop/fpmi/2 kurs/c# programming/edu-practice-1/edu-practice-1/obj/Debug/net5.0/edu-practice-1.csproj.CopyComplete
