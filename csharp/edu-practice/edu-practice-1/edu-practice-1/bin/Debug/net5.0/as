@@ -1,0 +1,38 @@
+[
+  {
+    "Title": "Milk",
+    "Description": "🥛",
+    "ImageUrl": "molokiya.com.ua",
+    "CreatedAt": "2015-12-12T00:00:00",
+    "UpdatedAt": "2020-10-21T00:00:00",
+    "Price": 37.75,
+    "ID": "84b88a9c-d89f-4f2f-8931-9246c5f9e703"
+  },
+  {
+    "Title": "Chocolate",
+    "Description": "🍫",
+    "ImageUrl": "www.google.com.sw",
+    "CreatedAt": "2019-09-05T00:00:00",
+    "UpdatedAt": "2019-09-05T00:00:00",
+    "Price": 55.0,
+    "ID": "1fab143f-734c-433a-b6d0-f257b5bc3ee8"
+  },
+  {
+    "Title": "Lwiwske Eksportowe",
+    "Description": "🍺",
+    "ImageUrl": "www.pryvatna.ua",
+    "CreatedAt": "2020-09-12T00:00:00",
+    "UpdatedAt": "2020-10-21T00:00:00",
+    "Price": 45.5,
+    "ID": "7a0724b9-d4d5-431e-8a74-1ccb82324c6b"
+  },
+  {
+    "Title": "Polyana Kwasova",
+    "Description": "💧",
+    "ImageUrl": "www.dzherelo.com",
+    "CreatedAt": "2021-01-01T00:00:00",
+    "UpdatedAt": "2021-01-01T00:00:00",
+    "Price": 34.0,
+    "ID": "e82b4a7c-74f8-4f9f-9480-f6dfaa715ea3"
+  }
+]

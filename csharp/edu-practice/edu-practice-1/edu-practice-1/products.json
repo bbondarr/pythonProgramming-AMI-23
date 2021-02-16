@@ -1,0 +1,65 @@
+[
+  {
+    "Title": "Avocado",
+    "Description": "🥑",
+    "ImageUrl": "fruit.ua",
+    "CreatedAt": "2020-03-10T00:00:00",
+    "UpdatedAt": "2021-02-01T00:00:00",
+    "Price": 54.33,
+    "ID": "4d67e467-095e-4000-b0c4-e78522c6460f"
+  },
+  {
+    "Title": "Carrot",
+    "Description": "🥕",
+    "ImageUrl": "www.farm.lv",
+    "CreatedAt": "2021-01-02T00:00:00",
+    "UpdatedAt": "2021-02-02T00:00:00",
+    "Price": 12.42,
+    "ID": "f8332e29-3b53-403e-87e2-77acffee33ef"
+  },
+  {
+    "Title": "Cherry",
+    "Description": "🍒",
+    "ImageUrl": "url.com",
+    "CreatedAt": "2020-01-02T00:00:00",
+    "UpdatedAt": "2021-01-02T00:00:00",
+    "Price": 50.33,
+    "ID": "b77b39d1-8a97-4531-b3f1-99a7cd62aeac"
+  },
+  {
+    "Title": "Chocolate",
+    "Description": "🍫",
+    "ImageUrl": "www.google.com.sw",
+    "CreatedAt": "2019-09-05T00:00:00",
+    "UpdatedAt": "2019-09-05T00:00:00",
+    "Price": 55.0,
+    "ID": "5d55c228-08ce-4a82-9b0d-9b99ec21e421"
+  },
+  {
+    "Title": "Corn",
+    "Description": "🌽",
+    "ImageUrl": "www.url",
+    "CreatedAt": "2020-02-02T00:00:00",
+    "UpdatedAt": "2020-11-04T00:00:00",
+    "Price": 30.88,
+    "ID": "29aaa4f3-d842-4b64-8bd0-273b75f5dc5e"
+  },
+  {
+    "Title": "Lwiwske Eksportowe",
+    "Description": "🍺",
+    "ImageUrl": "www.pryvatna.ua",
+    "CreatedAt": "2020-09-12T00:00:00",
+    "UpdatedAt": "2020-10-21T00:00:00",
+    "Price": 45.5,
+    "ID": "32398805-3ab3-42dd-bfde-58c1fb070b78"
+  },
+  {
+    "Title": "Milk",
+    "Description": "🥛",
+    "ImageUrl": "molokiya.com.ua",
+    "CreatedAt": "2015-12-12T00:00:00",
+    "UpdatedAt": "2020-10-21T00:00:00",
+    "Price": 41.2,
+    "ID": "9df5b5ac-04ef-4c9b-91a3-2e3d25782f9e"
+  }
+]
