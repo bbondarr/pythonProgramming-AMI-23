@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
 
 namespace edu_practice_1
@@ -12,7 +13,7 @@ namespace edu_practice_1
             {
                 return value;
             }
-            throw new FormatException($"String value must be a string consisting only letters and spaces, {value} was given");
+            throw new FormatException($"String value must be a string containing only letters and spaces, {value} was given");
         }
 
         public static string ValidateUrl(string value)
@@ -29,7 +30,7 @@ namespace edu_practice_1
         {
             if (value > 0.0)
             {
-                return value;
+                return Math.Round(value, 2);
             }
 
             throw new ArgumentOutOfRangeException("Price", $"Float value must be positive, {value} was given");
@@ -51,6 +52,19 @@ namespace edu_practice_1
                 return value;
             }
             throw new FormatException($"String value must be .json ot .txt format, {value} was given");
+        }
+
+        public static string ValidateProperty(string value, Type type)
+        {
+            string[] props = type.GetProperties(BindingFlags.Instance | BindingFlags.Public)
+                .Select(p => p.Name).ToArray();
+
+            if (props.Contains(value))
+            {
+                return value;
+            }
+
+            throw new MissingFieldException($"{type.Name} has no property {value} ");
         }
     }
 }

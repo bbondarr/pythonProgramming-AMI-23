@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Reflection;
 using System.Text.Json;
 
@@ -12,7 +12,7 @@ namespace edu_practice_1
         
 
         public Product(string title, string description, string imageUrl,
-                       double price, DateTime createdAt, DateTime updatedAt)
+            double price, DateTime createdAt, DateTime updatedAt)
         {
             ID = Guid.NewGuid();
             Title = title;

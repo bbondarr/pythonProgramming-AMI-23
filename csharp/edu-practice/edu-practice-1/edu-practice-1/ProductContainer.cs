@@ -44,6 +44,8 @@ namespace edu_practice_1
         public void Sort(string property)
         {
             property = char.ToUpper(property[0]) + property.Substring(1);
+            property = Validation.ValidateProperty(property, _typeP);
+            
             PropertyInfo prop = _typeP.GetProperty(property);
             _products = _products.OrderBy(
                 p => prop.GetValue(p)
@@ -99,6 +101,7 @@ namespace edu_practice_1
         public void Edit(Guid id, string property, string value)
         { 
             property = char.ToUpper(property[0]) + property.Substring(1);
+            property = Validation.ValidateProperty(property, _typeP);
             
             Product product = _products.Find(p => p.ID == id);
             PropertyInfo prop = _typeP.GetProperty(property);
@@ -121,6 +124,8 @@ namespace edu_practice_1
 
         public void ReadFromFile(string fn)
         {
+            fn = Validation.ValidateFileName(fn);
+            
             StreamReader sr = new StreamReader(fn);
             string json = sr.ReadToEnd();
             var list = JsonConvert.DeserializeObject<List<Dictionary<String, String>>>(json);
@@ -146,6 +151,7 @@ namespace edu_practice_1
         
         public void WriteIntoFile(string fn)
         {
+            fn = Validation.ValidateFileName(fn);
             string productsJson = JsonConvert.SerializeObject(_products, Formatting.Indented);
             File.WriteAllText(fn, productsJson);
         }

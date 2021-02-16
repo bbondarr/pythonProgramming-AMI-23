@@ -1,6 +1,6 @@
 [
   {
-    "Title": "Milk",
+    "Title": "Milk1",
     "Description": "🥛",
     "ImageUrl": "molokiya.com.ua",
     "CreatedAt": "2015-12-12T00:00:00",
@@ -13,7 +13,7 @@
     "Description": "🍞",
     "ImageUrl": "www.url.com.ua",
     "CreatedAt": "2019-02-02T00:00:00",
-    "UpdatedAt": "2020-11-04T00:00:00",
+    "UpdatedAt": "2000-11-04T00:00:00",
     "Price": 17.0,
     "ID": "0bcc4bfb-4072-4e62-a14f-3afb77331fe4"
   },
@@ -22,17 +22,17 @@
     "Description": "🍫",
     "ImageUrl": "www.google.com.sw",
     "CreatedAt": "2019-09-05T00:00:00",
-    "UpdatedAt": "2019-09-05T00:00:00",
+    "UpdatedAt": "20",
     "Price": 55.0,
     "ID": "211df3db-cebd-4ef1-a56b-01236be86a4c"
   },
   {
     "Title": "Lwiwske Eksportowe",
     "Description": "🍺",
-    "ImageUrl": "www.pryvatna.ua",
+    "ImageUrl": "pryvatna",
     "CreatedAt": "2020-09-12T00:00:00",
     "UpdatedAt": "2020-10-21T00:00:00",
-    "Price": 45.5,
+    "Price": -45.5,
     "ID": "c8d2dcf5-53ae-4208-8a70-c78be53cb00d"
   },
   {

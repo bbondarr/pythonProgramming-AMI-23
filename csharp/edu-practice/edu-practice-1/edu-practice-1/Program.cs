@@ -118,7 +118,7 @@ namespace edu_practice_1
             Console.WriteLine("Enter search query: ");
             string query = Console.ReadLine();
             ProductContainer found = pc.Find(query);
-            Console.WriteLine($"Found products:\n{found.ToString()}");
+            Console.WriteLine($"Found products:\n{found?.ToString()}");
         }
         
         static void SortMenu()
@@ -144,7 +144,7 @@ namespace edu_practice_1
         static void WriteIntoFileMenu()
         {
             Console.WriteLine("Enter filename: ");
-            string fn = Console.ReadLine();
+            string fn = $"{projectPath}/{Console.ReadLine()}";
             pc.WriteIntoFile(fn);
             Console.WriteLine("Collection successfully written!");
         }
