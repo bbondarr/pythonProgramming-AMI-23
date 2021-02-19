@@ -6,7 +6,7 @@
     "CreatedAt": "2020-03-10T00:00:00",
     "UpdatedAt": "2021-02-01T00:00:00",
     "Price": 54.33,
-    "ID": "4d67e467-095e-4000-b0c4-e78522c6460f"
+    "ID": "c8e22465-8ac3-4053-8264-5c8cdcb24e9f"
   },
   {
     "Title": "Carrot",
@@ -15,7 +15,7 @@
     "CreatedAt": "2021-01-02T00:00:00",
     "UpdatedAt": "2021-02-02T00:00:00",
     "Price": 12.42,
-    "ID": "f8332e29-3b53-403e-87e2-77acffee33ef"
+    "ID": "e30b06b3-4f0f-400b-b7b8-95163592e987"
   },
   {
     "Title": "Cherry",
@@ -24,7 +24,7 @@
     "CreatedAt": "2020-01-02T00:00:00",
     "UpdatedAt": "2021-01-02T00:00:00",
     "Price": 50.33,
-    "ID": "b77b39d1-8a97-4531-b3f1-99a7cd62aeac"
+    "ID": "b081edbb-3592-4307-bb8f-da2713825fe8"
   },
   {
     "Title": "Chocolate",
@@ -33,7 +33,7 @@
     "CreatedAt": "2019-09-05T00:00:00",
     "UpdatedAt": "2019-09-05T00:00:00",
     "Price": 55.0,
-    "ID": "5d55c228-08ce-4a82-9b0d-9b99ec21e421"
+    "ID": "21109106-d904-4246-ac29-e8c14b35c8e0"
   },
   {
     "Title": "Corn",
@@ -42,16 +42,16 @@
     "CreatedAt": "2020-02-02T00:00:00",
     "UpdatedAt": "2020-11-04T00:00:00",
     "Price": 30.88,
-    "ID": "29aaa4f3-d842-4b64-8bd0-273b75f5dc5e"
+    "ID": "f2004bdd-f1d3-4911-932a-c85b4f7c6293"
   },
   {
     "Title": "Lwiwske Eksportowe",
     "Description": "🍺",
-    "ImageUrl": "www.pryvatna.ua",
+    "ImageUrl": "pryvatna.com",
     "CreatedAt": "2020-09-12T00:00:00",
     "UpdatedAt": "2020-10-21T00:00:00",
     "Price": 45.5,
-    "ID": "32398805-3ab3-42dd-bfde-58c1fb070b78"
+    "ID": "2ab06136-3357-4d0f-9fb3-fad4ae03d084"
   },
   {
     "Title": "Milk",
@@ -60,6 +60,6 @@
     "CreatedAt": "2015-12-12T00:00:00",
     "UpdatedAt": "2020-10-21T00:00:00",
     "Price": 41.2,
-    "ID": "9df5b5ac-04ef-4c9b-91a3-2e3d25782f9e"
+    "ID": "39624e84-955f-4108-af92-11633750b5b6"
   }
 ]
