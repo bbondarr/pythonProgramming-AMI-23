@@ -10,6 +10,7 @@ namespace edu_practice_2
     /*
      * Works perfectly with classes that:
      * - have id property
+     * - have default constructor (only required in menu)
      * - are json-serializable
      */
         public class Container<T>
@@ -81,7 +82,7 @@ namespace edu_practice_2
         }
         
         
-        public T Remove(Guid id)
+        public T Remove(string id)
         {
             var idProperty = _type.GetProperties()
                 .ToList()
@@ -91,7 +92,7 @@ namespace edu_practice_2
             //var idProperty = _type.GetProperty("Id");
 
             T obj = _tlist.Find(o => 
-                idProperty.GetValue(o).ToString() == id.ToString()); 
+                idProperty.GetValue(o).ToString() == id); 
             _tlist.Remove(obj);
                 
             WriteIntoFile(_fn);
@@ -99,7 +100,7 @@ namespace edu_practice_2
         }
 
         
-        public void Edit(Guid id, string property, string value)
+        public void Edit(string id, string property, string value)
         { 
             property = char.ToUpper(property[0]) + property.Substring(1);
             property = Validation.ValidateProperty(property, _type);
@@ -112,7 +113,7 @@ namespace edu_practice_2
                 .Find(p => p.Name.ToLower() == "id");
 
             T obj = _tlist.Find(o => 
-                idProperty.GetValue(o).ToString() == id.ToString());
+                idProperty.GetValue(o).ToString() == id);
             propInfo.SetValue(obj, typedValue);
 
             WriteIntoFile(_fn);

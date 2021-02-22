@@ -1,12 +1,15 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
+using Manage_class_Flight;
 using Newtonsoft.Json;
 
 namespace edu_practice_2
 {
-    class Menu
+    class Menu<T> where T : Flight, new()
     {
-        private static Container<Product> pc = new Container<Product>();
+        private static Container<T> pc = new Container<T>();
+        private static string tName = typeof(T).Name;
         private static string projectPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
         static void Main()
         {
@@ -93,37 +96,35 @@ namespace edu_practice_2
         
         static void AddMenu()
         {
-            Console.Write("Enter Product title (str): ");
-            string t = Console.ReadLine();
-            Console.Write("Enter Product image URL (url str): ");
-            string i = Console.ReadLine();
-            Console.Write("Enter Product price (float): ");
-            double p = Convert.ToDouble(Console.ReadLine());
-            Console.Write("Enter Product creation date (date str): ");
-            DateTime c = Convert.ToDateTime(Console.ReadLine());
-            Console.Write("Enter Product update date (date str): ");
-            DateTime u = Convert.ToDateTime(Console.ReadLine());
-            Console.Write("Enter Product description (str): ");
-            string d = Console.ReadLine();
-            
-            pc.Add(new Product(t, d, i, p, c, u));
-            Console.WriteLine("Product successfully added!");
+            T newObj = new T();
+            var typeProperties = typeof(T).GetProperties();
+
+            foreach (var prop in typeProperties)
+            {
+                Console.Write($"Enter {tName} {prop.Name} ({prop.PropertyType}): ");
+                string value = Console.ReadLine();
+                var typedValue = Convert.ChangeType(value, prop.PropertyType);
+                prop.SetValue(newObj, typedValue);
+            }
+
+            pc.Add(newObj);
+            Console.WriteLine($"{tName} successfully added!");
         }
 
         static void RemoveMenu()
         {
             Console.Write("Enter ID: ");
-            Guid id = Guid.Parse(Console.ReadLine());
+            string id = Console.ReadLine();
             pc.Remove(id);
-            Console.WriteLine("Product successfully removed!");
+            Console.WriteLine($"{tName} successfully removed!");
         }
 
         static void FindMenu()
         {
             Console.Write("Enter search query: ");
             string query = Console.ReadLine();
-            Container<Product> found = pc.Find(query);
-            Console.WriteLine($"Found products:\n{found?.ToString()}");
+            Container<T> found = pc.Find(query);
+            Console.WriteLine($"Found {tName}s:\n{found?.ToString()}");
         }
         
         static void SortMenu()
@@ -137,13 +138,13 @@ namespace edu_practice_2
         static void EditMenu()
         {
             Console.Write("Enter ID: ");
-            Guid id = Guid.Parse(Console.ReadLine());
+            string id = Console.ReadLine();
             Console.Write("Enter property: ");
             string prop = Console.ReadLine();
             Console.Write("Enter value: ");
             string val = Console.ReadLine();
             pc.Edit(id, prop, val);
-            Console.WriteLine("Product successfully edited!");
+            Console.WriteLine($"{tName} successfully edited!");
         }
         
         static void WriteIntoFileMenu()
