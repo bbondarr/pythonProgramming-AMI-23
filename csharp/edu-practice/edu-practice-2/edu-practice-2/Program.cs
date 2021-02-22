@@ -1,19 +1,27 @@
 ﻿using System;
 using System.IO;
-using System.Reflection;
 using Manage_class_Flight;
 using Newtonsoft.Json;
 
 namespace edu_practice_2
 {
-    class Menu<T> where T : Flight, new()
+    class Program
+    {
+        static void Main()
+        {
+            Menu<Flight>.MainMenu();
+        }
+    }
+    
+    class Menu<T> where T : new()
     {
         private static Container<T> pc = new Container<T>();
         private static string tName = typeof(T).Name;
         private static string projectPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
-        static void Main()
+       
+        public static void MainMenu()
         {
-            Console.WriteLine("WELCOME TO PRODUCTS MENU");
+            Console.WriteLine($"WELCOME TO {tName.ToUpper()} MENU");
             Console.WriteLine();
             while (true)
             {
