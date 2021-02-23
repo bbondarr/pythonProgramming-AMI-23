@@ -102,22 +102,12 @@ namespace edu_practice_1
         { 
             property = char.ToUpper(property[0]) + property.Substring(1);
             property = Validation.ValidateProperty(property, _typeP);
-            
-            Product product = _products.Find(p => p.ID == id);
             PropertyInfo prop = _typeP.GetProperty(property);
-            if (prop.PropertyType.Name == "String")
-            {
-                prop.SetValue(product, value);
-            }
-            else if (prop.PropertyType.Name == "Double")
-            {
-                prop.SetValue(product, Convert.ToDouble(value));
-            }
-            else if (prop.PropertyType.Name == "DateTime")
-            {
-                prop.SetValue(product, Convert.ToDateTime(value));
-            }
-                        
+
+            var typedValue = Convert.ChangeType(value, prop.PropertyType);
+            Product product = _products.Find(p => p.ID == id);
+            prop.SetValue(product, typedValue);
+
             WriteIntoFile(_fn);
         }
 

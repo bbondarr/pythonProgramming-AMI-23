@@ -1,0 +1,17 @@
+/Users/bondarth/Desktop/fpmi/2 kurs/python programming/pythonProgramming-AMI-23/csharp/edu-practice/edu-practice-2/edu-practice-2/obj/Debug/net5.0/edu-practice-2.csprojAssemblyReference.cache
+/Users/bondarth/Desktop/fpmi/2 kurs/python programming/pythonProgramming-AMI-23/csharp/edu-practice/edu-practice-2/edu-practice-2/obj/Debug/net5.0/edu-practice-2.GeneratedMSBuildEditorConfig.editorconfig
+/Users/bondarth/Desktop/fpmi/2 kurs/python programming/pythonProgramming-AMI-23/csharp/edu-practice/edu-practice-2/edu-practice-2/obj/Debug/net5.0/edu-practice-2.AssemblyInfoInputs.cache
+/Users/bondarth/Desktop/fpmi/2 kurs/python programming/pythonProgramming-AMI-23/csharp/edu-practice/edu-practice-2/edu-practice-2/obj/Debug/net5.0/edu-practice-2.AssemblyInfo.cs
+/Users/bondarth/Desktop/fpmi/2 kurs/python programming/pythonProgramming-AMI-23/csharp/edu-practice/edu-practice-2/edu-practice-2/obj/Debug/net5.0/edu-practice-2.csproj.CoreCompileInputs.cache
+/Users/bondarth/Desktop/fpmi/2 kurs/python programming/pythonProgramming-AMI-23/csharp/edu-practice/edu-practice-2/edu-practice-2/bin/Debug/net5.0/edu-practice-2.deps.json
+/Users/bondarth/Desktop/fpmi/2 kurs/python programming/pythonProgramming-AMI-23/csharp/edu-practice/edu-practice-2/edu-practice-2/bin/Debug/net5.0/edu-practice-2.runtimeconfig.json
+/Users/bondarth/Desktop/fpmi/2 kurs/python programming/pythonProgramming-AMI-23/csharp/edu-practice/edu-practice-2/edu-practice-2/bin/Debug/net5.0/edu-practice-2.runtimeconfig.dev.json
+/Users/bondarth/Desktop/fpmi/2 kurs/python programming/pythonProgramming-AMI-23/csharp/edu-practice/edu-practice-2/edu-practice-2/bin/Debug/net5.0/edu-practice-2.dll
+/Users/bondarth/Desktop/fpmi/2 kurs/python programming/pythonProgramming-AMI-23/csharp/edu-practice/edu-practice-2/edu-practice-2/bin/Debug/net5.0/ref/edu-practice-2.dll
+/Users/bondarth/Desktop/fpmi/2 kurs/python programming/pythonProgramming-AMI-23/csharp/edu-practice/edu-practice-2/edu-practice-2/bin/Debug/net5.0/edu-practice-2.pdb
+/Users/bondarth/Desktop/fpmi/2 kurs/python programming/pythonProgramming-AMI-23/csharp/edu-practice/edu-practice-2/edu-practice-2/bin/Debug/net5.0/Newtonsoft.Json.dll
+/Users/bondarth/Desktop/fpmi/2 kurs/python programming/pythonProgramming-AMI-23/csharp/edu-practice/edu-practice-2/edu-practice-2/obj/Debug/net5.0/edu-practice-2.csproj.CopyComplete
+/Users/bondarth/Desktop/fpmi/2 kurs/python programming/pythonProgramming-AMI-23/csharp/edu-practice/edu-practice-2/edu-practice-2/obj/Debug/net5.0/edu-practice-2.dll
+/Users/bondarth/Desktop/fpmi/2 kurs/python programming/pythonProgramming-AMI-23/csharp/edu-practice/edu-practice-2/edu-practice-2/obj/Debug/net5.0/ref/edu-practice-2.dll
+/Users/bondarth/Desktop/fpmi/2 kurs/python programming/pythonProgramming-AMI-23/csharp/edu-practice/edu-practice-2/edu-practice-2/obj/Debug/net5.0/edu-practice-2.pdb
+/Users/bondarth/Desktop/fpmi/2 kurs/python programming/pythonProgramming-AMI-23/csharp/edu-practice/edu-practice-2/edu-practice-2/obj/Debug/net5.0/edu-practice-2.genruntimeconfig.cache
