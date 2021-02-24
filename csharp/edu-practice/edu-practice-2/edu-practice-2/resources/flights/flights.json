@@ -1,32 +1,5 @@
 [
   {
-    "ID": 0,
-    "DepartureCountry": "USA",
-    "ArrivalCountry": "Germany",
-    "DepartureTime": "2021-03-16T13:20:00",
-    "ArrivalTime": "2021-03-16T15:00:00",
-    "TicketPrice": 3500.0,
-    "CompanyName": "ANA"
-  },
-  {
-    "ID": 1,
-    "DepartureCountry": "USA",
-    "ArrivalCountry": "Ukraine",
-    "DepartureTime": "2021-05-07T14:00:00",
-    "ArrivalTime": "2021-05-07T17:30:00",
-    "TicketPrice": 2470.93,
-    "CompanyName": "Wizzair"
-  },
-  {
-    "ID": 2,
-    "DepartureCountry": "France",
-    "ArrivalCountry": "Ukraine",
-    "DepartureTime": "2021-05-09T18:00:00",
-    "ArrivalTime": "2021-05-09T20:00:00",
-    "TicketPrice": 399.0,
-    "CompanyName": "Ryanair"
-  },
-  {
     "ID": 3,
     "DepartureCountry": "Switzerland",
     "ArrivalCountry": "Japan",
@@ -43,5 +16,23 @@
     "ArrivalTime": "2021-03-16T19:45:00",
     "TicketPrice": 1920.0,
     "CompanyName": "ANA"
+  },
+  {
+    "ID": 2,
+    "DepartureCountry": "France",
+    "ArrivalCountry": "Ukraine",
+    "DepartureTime": "2021-05-09T18:00:00",
+    "ArrivalTime": "2021-05-09T20:00:00",
+    "TicketPrice": 399.0,
+    "CompanyName": "Ryanair"
+  },
+  {
+    "ID": 1,
+    "DepartureCountry": "USA",
+    "ArrivalCountry": "Ukraine",
+    "DepartureTime": "2021-05-07T14:00:00",
+    "ArrivalTime": "2021-05-07T17:30:00",
+    "TicketPrice": 2470.93,
+    "CompanyName": "Wizzair"
   }
 ]

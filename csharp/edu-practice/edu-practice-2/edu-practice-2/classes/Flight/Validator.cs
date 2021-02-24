@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace flight
+namespace Manage_class_Flight
 {
     class Validator
     {

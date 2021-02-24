@@ -13,7 +13,7 @@ namespace edu_practice_2
      * - have default constructor (only required in menu)
      * - are json-serializable
      */
-    public class Container<T>
+        public class Container<T>
     {
         private List<T> _tlist;
         private readonly Type _type = typeof(T);
@@ -63,7 +63,8 @@ namespace edu_practice_2
         {
             keyword = keyword.ToLower();
             List<T> results = new List<T>();
-            var props = _type.GetProperties().ToList();
+            var props = _type.GetProperties(
+                BindingFlags.Instance | BindingFlags.Public).ToList();
             
             props.ForEach(p => 
                 results.AddRange(_tlist.FindAll(o =>
@@ -123,8 +124,8 @@ namespace edu_practice_2
         {
             fn = Validation.ValidateFileName(fn);
             
-            string json = File.ReadAllText(fn);
-
+            StreamReader sr = new StreamReader(fn);
+            string json = sr.ReadToEnd();
             var list = JsonConvert.DeserializeObject<List<Dictionary<String, String>>>(json);
             string errorMessage = "";
             foreach (var dict in list)
@@ -140,6 +141,8 @@ namespace edu_practice_2
                 }
             }
             if (errorMessage != "") throw new JsonException(errorMessage);
+            
+            sr.Close();
         }
 
         

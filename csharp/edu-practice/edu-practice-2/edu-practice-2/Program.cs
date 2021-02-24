@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
+using Manage_class_Flight;
 using Newtonsoft.Json;
-using Task_02;
 
 namespace edu_practice_2
 {
@@ -9,7 +9,7 @@ namespace edu_practice_2
     {
         static void Main()
         {
-            Menu<Address>.MainMenu();
+            Menu<Flight>.MainMenu();
         }
     }
     
@@ -109,8 +109,6 @@ namespace edu_practice_2
 
             foreach (var prop in typeProperties)
             {
-                if (prop.Name.ToLower() == "id") continue;
-                
                 Console.Write($"Enter {tName} {prop.Name} ({prop.PropertyType}): ");
                 string value = Console.ReadLine();
                 var typedValue = Convert.ChangeType(value, prop.PropertyType);
