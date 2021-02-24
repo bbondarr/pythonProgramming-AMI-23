@@ -9,7 +9,12 @@ namespace edu_practice_2
         private double _price;
         private DateTime _createdAt, _updatedAt;
         
-
+        public Product()
+        {
+            ID = Guid.NewGuid(); ;
+        }
+        
+        
         public Product(string title, string description, string imageUrl,
             double price, DateTime createdAt, DateTime updatedAt)
         {

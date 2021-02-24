@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace Manage_class_Flight
+namespace flight
 {
     class Flight
     {
@@ -12,7 +12,7 @@ namespace Manage_class_Flight
         private float _tick;
         private string _com_n;
 
-        // Contructors
+        // Contructor
         public Flight() { }
 
         public Flight(int id, string dep_c, string arr_c, DateTime dep_t, 

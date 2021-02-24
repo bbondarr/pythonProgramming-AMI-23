@@ -10,4 +10,19 @@
       <PackageReference Include="Newtonsoft.Json" Version="13.0.1-beta1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="resources\events\**" />
+      <Compile Remove="classes\Event\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="resources\events\**" />
+      <EmbeddedResource Remove="classes\Event\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="resources\events\**" />
+      <None Remove="classes\Event\**" />
+    </ItemGroup>
+
 </Project>
